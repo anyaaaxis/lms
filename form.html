@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta
+      name="description"
+      content="Formulir Pendaftaran Star Girl Academy"
+    />
+    <title>Formulir Pendaftaran - Star Girl Academy</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/style.css"
+    />
+    <style>
+      @font-face {
+        font-family: 'Bryndan';
+        src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      .form-page {
+        min-height: 100vh;
+        background: #d5dac9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+      }
+      .form-container {
+        background: #d5dac9;
+        max-width: 520px;
+        width: 100%;
+        padding: 3rem 2.5rem;
+      }
+      .form-group {
+        margin-bottom: 1.75rem;
+      }
+      .form-group label {
+        display: block;
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: #5e6b68;
+        margin-bottom: 0.6rem;
+        letter-spacing: 0.3px;
+        font-family: 'Bryndan', 'Inter', sans-serif;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 0.95rem 1.15rem;
+        font-size: 0.95rem;
+        border: none;
+        border-radius: 50px;
+        background: #4d5553;
+        color: #fff;
+        outline: none;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+      }
+      .form-group input::placeholder,
+      .form-group select::placeholder {
+        color: #bbb;
+      }
+      .form-group input:focus,
+      .form-group select:focus {
+        background: #5d6359;
+        box-shadow: 0 0 0 3px rgba(245, 165, 49, 0.3);
+      }
+      .form-group select {
+        appearance: none;
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23fff' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+      }
+      .submit-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2.25rem;
+      }
+      .btn-submit,
+      .btn-back {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease;
+      }
+      .btn-submit:hover,
+      .btn-back:hover {
+        transform: scale(1.08);
+      }
+      .btn-submit:active,
+      .btn-back:active {
+        transform: scale(0.96);
+      }
+      .btn-submit img,
+      .btn-back img {
+        width: 48px;
+        height: 48px;
+        display: block;
+      }
+      @media (max-width: 600px) {
+        .form-container {
+          padding: 2rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-page">
+      <div class="form-container">
+        <form
+          id="registrationForm"
+          action="#"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="nama">Nama :</label>
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              placeholder=""
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="kelas">Kelas :</label>
+            <input
+              type="text"
+              id="kelas"
+              name="kelas"
+              placeholder=""
+              required
+            />
+          </div>
+
+          <div class="submit-wrapper">
+            <button
+              type="button"
+              class="btn-back"
+              aria-label="Kembali ke beranda"
+              onclick="window.location.href='index.html'"
+            >
+              <img
+                src="assets/img/prev_button.png"
+                alt="Kembali"
+              />
+            </button>
+            <button
+              type="submit"
+              class="btn-submit"
+              aria-label="Submit formulir"
+            >
+              <img
+                src="assets/img/next_button.png"
+                alt="Submit"
+              />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Form submission handler
+      document.getElementById('registrationForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const nama = document.getElementById('nama').value;
+        const kelas = document.getElementById('kelas').value;
+
+        // Validasi sederhana
+        if (nama.trim() && kelas.trim()) {
+          // Simpan nama ke localStorage
+          localStorage.setItem('userName', nama);
+          localStorage.setItem('userClass', kelas);
+
+          alert(`Pendaftaran berhasil!\n\nNama: ${nama}\nKelas: ${kelas}\n\nTerima kasih telah mendaftar di Star Girl Academy!`);
+          // Reset form
+          this.reset();
+          // Redirect ke halaman opening setelah 1 detik
+          setTimeout(() => {
+            window.location.href = 'opening.html';
+          }, 1000);
+        }
+      });
+    </script>
+  </body>
+</html>

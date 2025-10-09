@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Opening - Star Girl Academy</title>
+    <style>
+      @font-face {
+        font-family: 'Bryndan';
+        src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        min-height: 100vh;
+        background: #fbf3d7;
+        position: relative;
+        overflow: hidden;
+      }
+      .strip {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 90px;
+        background: #9db0ac;
+        border-radius: 0 0 32px 32px;
+      }
+      .strip.top {
+        top: 0;
+        border-radius: 0 0 32px 32px;
+        display: flex;
+        align-items: center;
+        padding-left: 32px;
+        padding-right: 32px;
+        gap: 1.5rem;
+        justify-content: flex-start;
+      }
+      .strip.top img {
+        height: 65px;
+        width: auto;
+        filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+        flex-shrink: 0;
+      }
+      .greeting-text {
+        color: #fff;
+        font-family: 'Bryndan', sans-serif;
+        font-size: 1.3rem;
+        line-height: 1.4;
+        font-weight: 400;
+        flex: 1;
+      }
+      .greeting-text .user-name {
+        font-weight: 600;
+      }
+      .strip.bottom {
+        bottom: 0;
+        border-radius: 32px 32px 0 0;
+      }
+      @media (max-width: 600px) {
+        .strip {
+          height: 60px;
+          border-radius: 0 0 18px 18px;
+        }
+        .strip.top {
+          height: 80px;
+          padding-left: 16px;
+          padding-right: 16px;
+          gap: 1rem;
+        }
+        .strip.top img {
+          height: 50px;
+        }
+        .greeting-text {
+          font-size: 1rem;
+        }
+        .strip.bottom {
+          border-radius: 18px 18px 0 0;
+        }
+      }
+      .center-btn {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        pointer-events: auto;
+        z-index: 2;
+      }
+      .btn-show {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: transform 0.3s, opacity 0.3s;
+        position: relative;
+      }
+      .btn-show img {
+        display: block;
+        width: 60px;
+        height: 60px;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      }
+      .btn-show:hover {
+        transform: translateY(-3px);
+        opacity: 0.9;
+      }
+      .btn-show:active {
+        transform: translateY(0);
+      }
+      .btn-show::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        background: #2d3a36;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        margin-bottom: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+      .btn-show:hover::after {
+        opacity: 1;
+      }
+      .strip.bottom {
+        height: 260px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 28px;
+        padding-bottom: 30px; /* reduced further to move cards higher */
+        box-sizing: border-box;
+        z-index: 3;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        bottom: 0;
+        transition: transform 0.7s cubic-bezier(0.7, 1.5, 0.5, 1), opacity 0.5s;
+        transform: translateY(100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .strip.bottom.show {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .strip.bottom.hide {
+        transform: translateY(100%);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .testimonials {
+        width: 100%;
+        max-width: 1150px;
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 110px; /* increased further for more space above cards */
+        position: relative;
+      }
+      .testi-header h2 {
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .testi-header p {
+        color: #f8f8f8;
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+      }
+      .testi-list {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      .testi-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        padding: 1.1rem 1.2rem 0.8rem 1.2rem;
+        min-width: 220px;
+        max-width: 260px;
+        text-align: left;
+        border: 2px solid #f8a641;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .testi-icon {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-bottom: 0.2rem;
+      }
+      .dot {
+        width: 18px;
+        height: 18px;
+        background: #f8a641;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .stars {
+        color: #f8a641;
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+      .testi-text {
+        color: #222;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      .btn-close {
+        position: absolute;
+        top: 18px;
+        right: 32px;
+        background: #fff;
+        color: #2d3a36;
+        border: 2px solid #f8a641;
+        border-radius: 50%;
+        font-size: 2rem;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        transition: background 0.2s, color 0.2s;
+      }
+      .btn-close:hover {
+        background: #f8a641;
+        color: #fff;
+      }
+      @media (max-width: 900px) {
+        .testi-list {
+          gap: 1rem;
+        }
+        .testi-card {
+          min-width: 160px;
+          max-width: 200px;
+          font-size: 0.95rem;
+        }
+      }
+      @media (max-width: 600px) {
+        .strip.bottom {
+          border-radius: 18px 18px 0 0;
+          height: 260px;
+          padding-top: 18px;
+          padding-bottom: 30px; /* reduced further for mobile */
+        }
+        .testi-list {
+          flex-direction: column;
+          gap: 1.1rem;
+          align-items: center;
+        }
+        .testimonials {
+          max-width: 98vw;
+          margin-bottom: 80px; /* increased for mobile */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="strip top">
+      <img
+        src="assets/img/book_lamp.png"
+        alt="Book and Lamp"
+      />
+      <div class="greeting-text">
+        Hai, <span class="user-name" id="userName">Bestie</span>!<br>
+        mau belajar apa hari ini?
+      </div>
+    </div>
+    <div class="center-btn">
+      <button
+        id="showTestiBtn"
+        class="btn-show"
+        data-tooltip="Lihat Testimoni"
+        aria-label="Lihat Testimoni"
+      >
+        <img
+          src="assets/img/up_button.png"
+          alt="Lihat Testimoni"
+        />
+      </button>
+    </div>
+    <div class="strip bottom hide">
+      <div class="testimonials">
+        <button
+          id="closeTestiBtn"
+          class="btn-close"
+          aria-label="Tutup Testimoni"
+        >
+          &times;
+        </button>
+        <div class="testi-header">
+          <h2>Apa Kata Mereka?</h2>
+          <p>Pengalaman Bestie yang sudah belajar memahami konsep di Star Girl Academy</p>
+        </div>
+        <div class="testi-list">
+          <div class="testi-card">
+            <div class="testi-icon">
+              <span class="dot"></span>
+              <span class="stars">★★★★★</span>
+            </div>
+            <div class="testi-text">Kursusnya Sangat Asyik dan Menyenangkan !</div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-icon">
+              <span class="dot"></span>
+              <span class="stars">★★★★★</span>
+            </div>
+            <div class="testi-text">Worth it banget buat belajar, materinya mudah dipahami</div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-icon">
+              <span class="dot"></span>
+              <span class="stars">★★★★★</span>
+            </div>
+            <div class="testi-text">Enak banget belajar di Stargirl Academy</div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-icon">
+              <span class="dot"></span>
+              <span class="stars">★★★★★</span>
+            </div>
+            <div class="testi-text">Aku Lolos SNBT 2025 karena belajar di Stargirl Academy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Load user name from localStorage
+      const userName = localStorage.getItem('userName');
+      if (userName) {
+        document.getElementById('userName').textContent = userName;
+      }
+      
+      const btn = document.getElementById('showTestiBtn');
+      const stripBottom = document.querySelector('.strip.bottom');
+      btn.addEventListener('click', function () {
+        stripBottom.classList.remove('hide');
+        stripBottom.classList.add('show');
+        btn.style.display = 'none';
+      });
+      const closeBtn = document.getElementById('closeTestiBtn');
+      closeBtn.addEventListener('click', function () {
+        stripBottom.classList.remove('show');
+        stripBottom.classList.add('hide');
+        btn.style.display = 'block';
+      });
+    </script>
+  </body>
+</html>

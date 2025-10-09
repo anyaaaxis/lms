@@ -185,8 +185,8 @@ html {
   text-decoration: none;
 }
 .btn.outline:hover {
-  background: #f5a531;
-  border-color: #f5a531;
+  background: #f8a641;
+  border-color: #f8a641;
   color: #fff;
 }
 .btn.outline:focus-visible {
