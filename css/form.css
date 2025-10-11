@@ -1,0 +1,134 @@
+@font-face {
+  font-family: 'Bryndan';
+  src: url('../assets/fonts/bryndan_writebook.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.form-page {
+  min-height: 100vh;
+  background: #d5dac9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+.form-container {
+  background: #d5dac9;
+  max-width: 520px;
+  width: 100%;
+  padding: 3rem 2.5rem;
+}
+.form-group {
+  margin-bottom: 1.75rem;
+}
+.form-group label {
+  display: block;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #5e6b68;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.3px;
+  font-family: 'Bryndan', 'Inter', sans-serif;
+}
+
+/* Prevent selecting/copying labels and images inside the form */
+.form-container,
+.form-container * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Allow selecting / interacting with form controls */
+.form-container input,
+.form-container textarea,
+.form-container select {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+.form-container img {
+  -webkit-touch-callout: none;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .form-container img {
+    -webkit-touch-callout: none;
+  }
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.95rem 1.15rem;
+  font-size: 0.95rem;
+  font-family: 'Bryndan', 'Inter', sans-serif;
+  border: none;
+  border-radius: 50px;
+  background: #4d5553;
+  color: #fff;
+  outline: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group input::placeholder,
+.form-group select::placeholder {
+  color: #bbb;
+}
+.form-group input:focus,
+.form-group select:focus {
+  background: #5d6359;
+  box-shadow: 0 0 0 3px rgba(245, 165, 49, 0.3);
+}
+.form-group select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23fff' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+.submit-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.25rem;
+}
+.btn-submit,
+.btn-back {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.btn-submit:hover,
+.btn-back:hover {
+  transform: scale(1.08);
+}
+.btn-submit:active,
+.btn-back:active {
+  transform: scale(0.96);
+}
+.btn-submit img,
+.btn-back img {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+@media (max-width: 600px) {
+  .form-container {
+    padding: 2rem 1.5rem;
+  }
+}
