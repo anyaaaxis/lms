@@ -58,9 +58,19 @@ select {
   --header-h: 64px; /* tinggi header sticky */
 }
 
+/* Custom font: Moresugar (local file) */
+@font-face {
+  font-family: 'Moresugar';
+  src: url('../assets/fonts/moresugar_regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   background: var(--clr-bg);
   color: var(--clr-text);
+  font-family: 'Moresugar', 'Inter', system-ui, Arial, sans-serif;
 }
 
 html {
