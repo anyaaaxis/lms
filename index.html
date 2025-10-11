@@ -103,61 +103,52 @@
             <h2 class="teachers-title">Teacher Stargirl Academy</h2>
             <p class="teachers-subtitle">Lebih seru belajar bareng Teacher Stargirl Academy<br />Yuk kenalan sama mereka!</p>
           </header>
-          <div class="teachers-grid">
-            <article class="teacher-card">
-              <div class="avatar-wrapper">
-                <img
-                  src="assets/img/teacher1.jpg"
-                  alt="Sensei Nabila"
-                  class="teacher-avatar"
-                />
-                <span class="badge-name">Sensei Nabila</span>
-                <span
-                  class="badge-icon"
-                  aria-hidden="true"
-                  >✏️</span
-                >
+          <div class="teachers-grid teachers-plain">
+            <!-- Scroll-snap carousel + JS-controlled dots. Allows touch swipe and JS autoplay. -->
+            <div
+              class="carousel"
+              role="region"
+              aria-roledescription="carousel"
+            >
+              <div class="carousel__viewport">
+                <div class="teachers-carousel-track carousel__track">
+                  <div class="teacher-photo-wrap">
+                    <img
+                      src="assets/img/teachers/izatunnisa.png"
+                      alt="izatunnisa"
+                      class="teacher-photo"
+                    />
+                  </div>
+                  <div class="teacher-photo-wrap">
+                    <img
+                      src="assets/img/teachers/rohuf_fitry.png"
+                      alt="rohuf_fitry"
+                      class="teacher-photo"
+                    />
+                  </div>
+                  <div class="teacher-photo-wrap">
+                    <img
+                      src="assets/img/teachers/handayani_putri.png"
+                      alt="handayani_putri"
+                      class="teacher-photo"
+                    />
+                  </div>
+                  <div class="teacher-photo-wrap">
+                    <img
+                      src="assets/img/teachers/aghnia_muthya.png"
+                      alt="aghnia_muthya"
+                      class="teacher-photo"
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="teacher-info">
-                <p>Prestasi Selama Sekolah</p>
-              </div>
-            </article>
-            <article class="teacher-card">
-              <div class="avatar-wrapper">
-                <img
-                  src="assets/img/teacher2.jpg"
-                  alt="Sensei Aghnia"
-                  class="teacher-avatar"
-                />
-                <span class="badge-name">Sensei Aghnia</span>
-                <span
-                  class="badge-icon"
-                  aria-hidden="true"
-                  >✏️</span
-                >
-              </div>
-              <div class="teacher-info">
-                <p>Prestasi Selama Sekolah</p>
-              </div>
-            </article>
-            <article class="teacher-card">
-              <div class="avatar-wrapper">
-                <img
-                  src="assets/img/teacher3.jpg"
-                  alt="Sensei Putri"
-                  class="teacher-avatar"
-                />
-                <span class="badge-name">Sensei Putri</span>
-                <span
-                  class="badge-icon"
-                  aria-hidden="true"
-                  >✏️</span
-                >
-              </div>
-              <div class="teacher-info">
-                <p>Prestasi Selama Sekolah</p>
-              </div>
-            </article>
+
+              <!-- dots will be populated/controlled by JS -->
+              <div
+                class="carousel__dots"
+                aria-hidden="false"
+              ></div>
+            </div>
           </div>
         </div>
       </section>

@@ -443,109 +443,110 @@ body.no-select select {
   align-items: start;
   margin-top: 0.5rem;
 }
-.teacher-card {
-  --tc-border: #c99891;
-  background: #fff;
-  border: 1.5px solid var(--tc-border);
-  border-radius: 22px;
-  width: 100%;
-  padding: 5.25rem 1.15rem 1.35rem;
-  position: relative;
-  text-align: center;
-  box-shadow: 0 3px 10px -4px rgba(0, 0, 0, 0.18);
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  isolation: isolate;
-  overflow: visible;
-  transition: box-shadow 0.35s var(--transition), transform 0.35s var(--transition);
+
+/* Plain teacher photos variant: remove frames, shadows, badges and show pure images */
+.teachers-grid.teachers-plain {
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin-top: 1rem;
 }
-.teacher-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, #ffffff 0%, #fff7f5 100%);
-  opacity: 0.85;
-  z-index: -1;
-  pointer-events: none;
-  transition: opacity 0.4s var(--transition);
-}
-.teacher-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 14px 36px -10px rgba(0, 0, 0, 0.25);
-}
-.teacher-card:hover::before {
-  opacity: 1;
-}
-.avatar-wrapper {
-  position: absolute;
-  top: -62px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 28%, #fff 0%, #ffe9e3 65%, #ffd9d1 100%);
-  padding: 6px;
+.teacher-photo-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--tc-border);
-  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.25);
+  padding: 0.25rem; /* small breathing room */
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
-.teacher-avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+.teacher-photo {
   display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  object-fit: cover;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
 }
-.badge-name {
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #b77972;
-  color: #fff;
-  font-size: 0.72rem;
-  padding: 0.42rem 0.75rem 0.4rem;
-  border-radius: 40px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+
+/* Ensure teacher-photo-wrap doesn't inherit old card styles on small screens */
+@media (max-width: 640px) {
+  /* Mobile: make the teachers area a single-item carousel */
+  .teachers-grid.teachers-plain {
+    display: block;
+    overflow: hidden;
+    padding: 0;
+  }
+  .teachers-carousel-track {
+    display: flex;
+    gap: 0.75rem;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .teacher-photo-wrap {
+    flex: 0 0 100%; /* one slide visible */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+  .teacher-photo {
+    max-width: 220px;
+    width: 80%;
+    border-radius: 12px;
+  }
 }
-.badge-icon {
-  position: absolute;
-  bottom: -6px;
-  right: -10px;
-  background: #b77972;
-  color: #fff;
-  font-size: 0.8rem;
-  padding: 0.55rem;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
-  line-height: 1;
+/* Removed old .teacher-card styles (not used anymore) to keep stylesheet clean */
+
+/* Carousel styles: only active on mobile (<=640px) */
+@media (max-width: 640px) {
+  .carousel__viewport {
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+  .carousel__viewport::-webkit-scrollbar {
+    /* WebKit */
+    height: 0;
+    display: none;
+  }
+  .carousel__track {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .carousel__track > .teacher-photo-wrap {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+  }
+
+  /* Dots styling (mobile only) */
+  .carousel__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 0.65rem;
+  }
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+  }
+  .carousel-dot.active {
+    background: #b77972;
+  }
 }
-.teacher-info {
-  margin-top: 0.5rem;
-}
-.teacher-info p {
-  margin: 0;
-  font-size: 0.76rem;
-  letter-spacing: 0.35px;
-  color: #433b39;
-  font-weight: 500;
-}
-.teacher-card:focus-within {
-  outline: 2px solid #b77972;
-  outline-offset: 3px;
-}
-.teacher-card a {
-  text-decoration: none;
-  color: inherit;
+
+/* Desktop: ensure dots are hidden and carousel layout falls back to grid */
+@media (min-width: 641px) {
+  .carousel__dots {
+    display: none;
+  }
 }
 @media (max-width: 640px) {
   .teachers-title {
@@ -566,7 +567,34 @@ body.no-select select {
 }
 @media (min-width: 1080px) {
   .teachers-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Desktop: flatten carousel wrapper so photo items participate in the grid
+   layout. This makes the images sit side-by-side while keeping mobile
+   carousel structure intact. Uses display:contents which is supported in
+   modern browsers. */
+@media (min-width: 641px) {
+  .teachers-grid.teachers-plain > .carousel,
+  .teachers-grid.teachers-plain > .carousel > .carousel__viewport,
+  .teachers-grid.teachers-plain > .carousel > .carousel__viewport > .carousel__track {
+    display: contents;
+  }
+
+  /* Ensure each photo-wrapper behaves as a grid item */
+  .teachers-grid.teachers-plain > .teacher-photo-wrap,
+  .teachers-grid.teachers-plain .teacher-photo-wrap {
+    display: block;
+    padding: 0.25rem;
+    justify-content: center;
+  }
+
+  .teachers-grid.teachers-plain .teacher-photo {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
   }
 }
 

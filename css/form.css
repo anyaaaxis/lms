@@ -13,6 +13,13 @@ body {
   padding: 0;
 }
 
+/* Make sizing predictable so padding doesn't affect width calculations */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .form-page {
   min-height: 100vh;
   background: #d5dac9;
@@ -26,6 +33,9 @@ body {
   max-width: 520px;
   width: 100%;
   padding: 3rem 2.5rem;
+  /* center the container so left/right margins are equal on small viewports */
+  margin-left: auto;
+  margin-right: auto;
 }
 .form-group {
   margin-bottom: 1.75rem;
@@ -129,6 +139,9 @@ body {
 }
 @media (max-width: 600px) {
   .form-container {
+    /* Use symmetric horizontal padding so margins are visually equal */
     padding: 2rem 1.5rem;
+    /* limit width slightly so there's equal breathing room on both sides */
+    max-width: 420px;
   }
 }
