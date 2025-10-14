@@ -34,10 +34,14 @@
         height: 90px;
         background: #9db0ac;
         border-radius: 0 0 32px 32px;
+        box-sizing: border-box;
+        overflow: hidden; /* ensure children don't overflow border radius */
       }
       .strip.top {
         top: 0;
+        /* Only round the bottom corners of the top strip; keep top corners square */
         border-radius: 0 0 32px 32px;
+        z-index: 5; /* keep header above center visual */
         display: flex;
         align-items: center;
         padding-left: 32px;
@@ -73,6 +77,8 @@
         }
         .strip.top {
           height: 80px;
+          /* Only round bottom corners on smaller screens as well */
+          border-radius: 0 0 18px 18px;
           padding-left: 16px;
           padding-right: 16px;
           gap: 1rem;
@@ -135,6 +141,123 @@
       .btn-show:hover::after {
         opacity: 1;
       }
+      /* Centered visual (jalanan.png) */
+      .center-visual {
+        position: fixed;
+        top: calc(50% + 24px); /* lowered a bit from exact center */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100vw; /* span full viewport width */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none; /* allow clicks through */
+        z-index: 1; /* behind header and buttons */
+      }
+      .center-visual__img {
+        width: 100%; /* fill container width */
+        max-width: none;
+        height: auto;
+        display: block;
+      }
+      /* Lesson one button (satu_button) above the snake body */
+      .lesson-one {
+        position: fixed;
+        /* Place above the first big hump of the snake */
+        top: calc(50% - 40px);
+        left: 33vw;
+        transform: translate(-50%, -35%);
+        width: clamp(30px, 9vw, 70px); /* size of the circular badge */
+        z-index: 2; /* above road, below header */
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        pointer-events: auto; /* make it clickable */
+        filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+      }
+      .lesson-one img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+      .lesson-one:hover img {
+        transform: scale(1.06);
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+      }
+      /* Lesson two button (dua_button) at the top hump */
+      .lesson-two {
+        position: fixed;
+        top: calc(50% - 119px); /* above the center, on the highest hump */
+        left: 50vw; /* roughly centered horizontally */
+        transform: translate(-50%, -50%);
+        width: clamp(30px, 9vw, 70px); /* match size with lesson-one */
+        z-index: 2;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        pointer-events: auto;
+        filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+      }
+      .lesson-two img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+      .lesson-two:hover img {
+        transform: scale(1.06);
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+      }
+      /* Lesson three button (tiga_button) near lower-right curve */
+      .lesson-three {
+        position: fixed;
+        top: calc(50% + 50px); /* slightly below road center, on the lower curve */
+        left: 63.7vw; /* right area before the snake head */
+        transform: translate(-50%, -50%);
+        width: clamp(30px, 9vw, 70px); /* match size with others */
+        z-index: 2;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        pointer-events: auto;
+        filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+      }
+      .lesson-three img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+      .lesson-three:hover img {
+        transform: scale(1.06);
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+      }
+      /* Kids image on the left side of the road */
+      .kids-left {
+        position: fixed;
+        top: calc(50% + 24px); /* align bottom to road center line */
+        left: 4vw; /* shift a bit further left */
+        transform: translateY(-100%); /* bottom of image sits on the line */
+        width: clamp(100px, 14.5vw, 205px); /* slightly reduced size */
+        height: auto;
+        z-index: 2; /* above the road, below header */
+        pointer-events: none;
+      }
+      /* Kids image on the right side of the road (near FINISH) */
+      .kids-right {
+        position: fixed;
+        top: calc(50% + 40px); /* lift a bit so bottom sits just above the road line */
+        right: 14.5vw; /* move closer to the snake */
+        transform: translateY(-100%);
+        width: clamp(118px, 17vw, 235px); /* slightly larger than left */
+        height: auto;
+        z-index: 2; /* above the road, below header */
+        pointer-events: none;
+      }
       .strip.bottom {
         height: 260px;
         display: flex;
@@ -170,6 +293,18 @@
         text-align: center;
         margin-bottom: 110px; /* increased further for more space above cards */
         position: relative;
+      }
+      /* Use Bryndan font for all testimonial elements */
+      .testimonials,
+      .testi-header,
+      .testi-header h2,
+      .testi-header p,
+      .testi-list,
+      .testi-card,
+      .testi-icon,
+      .stars,
+      .testi-text {
+        font-family: 'Bryndan', sans-serif;
       }
       .testi-header h2 {
         color: #fff;
@@ -278,14 +413,75 @@
     </style>
   </head>
   <body>
+    <!-- Centered road image -->
+    <div
+      class="center-visual"
+      aria-hidden="true"
+    >
+      <img
+        src="assets/img/jalanan.png"
+        alt="jalan"
+        class="center-visual__img"
+      />
+    </div>
+
+    <!-- Kids walking image (left side) -->
+    <img
+      src="assets/img/anak_jalan..png"
+      alt="Anak berjalan"
+      class="kids-left"
+      aria-hidden="true"
+    />
+
+    <!-- Kids cheering image (right side near FINISH) -->
+    <img
+      src="assets/img/anak_finish.png"
+      alt="Anak melambaikan tangan"
+      class="kids-right"
+      aria-hidden="true"
+    />
+
+    <!-- Lesson one clickable button near the first point on the road -->
+    <button
+      id="lessonOneBtn"
+      class="lesson-one"
+      aria-label="Buka Materi 1"
+      title="Materi 1"
+      data-target="index.html"
+    >
+      <img
+        src="assets/img/satu_button.png"
+        alt=""
+      />
+    </button>
+
+    <!-- Lesson two clickable button on the top hump of the snake -->
+    <button
+      id="lessonTwoBtn"
+      class="lesson-two"
+      aria-label="Buka Materi 2"
+      title="Materi 2"
+      data-target="index.html"
+    >
+      <img
+        src="assets/img/dua_button.png"
+        alt=""
+      />
+    </button>
+
     <div class="strip top">
       <img
         src="assets/img/book_lamp.png"
         alt="Book and Lamp"
       />
       <div class="greeting-text">
-        Hai, <span class="user-name" id="userName">Bestie</span>!<br>
-        mau belajar apa hari ini?
+        Hai,
+        <span
+          class="user-name"
+          id="userName"
+          >Bestie</span
+        >!<br />
+        Hari ini kita akan mempelajari Sistem Persamaan Linear Tiga Variabel
       </div>
     </div>
     <div class="center-btn">
@@ -301,6 +497,20 @@
         />
       </button>
     </div>
+
+    <!-- Lesson three clickable button near the lower-right curve -->
+    <button
+      id="lessonThreeBtn"
+      class="lesson-three"
+      aria-label="Buka Materi 3"
+      title="Materi 3"
+      data-target="index.html"
+    >
+      <img
+        src="assets/img/tiga_button.png"
+        alt=""
+      />
+    </button>
     <div class="strip bottom hide">
       <div class="testimonials">
         <button
@@ -352,7 +562,7 @@
       if (userName) {
         document.getElementById('userName').textContent = userName;
       }
-      
+
       const btn = document.getElementById('showTestiBtn');
       const stripBottom = document.querySelector('.strip.bottom');
       btn.addEventListener('click', function () {
@@ -366,6 +576,33 @@
         stripBottom.classList.add('hide');
         btn.style.display = 'block';
       });
+
+      // Navigate when clicking the lesson one button
+      const lessonOneBtn = document.getElementById('lessonOneBtn');
+      if (lessonOneBtn) {
+        lessonOneBtn.addEventListener('click', function () {
+          const target = lessonOneBtn.dataset.target || 'index.html';
+          window.location.href = target;
+        });
+      }
+
+      // Navigate when clicking the lesson two button
+      const lessonTwoBtn = document.getElementById('lessonTwoBtn');
+      if (lessonTwoBtn) {
+        lessonTwoBtn.addEventListener('click', function () {
+          const target = lessonTwoBtn.dataset.target || 'index.html';
+          window.location.href = target;
+        });
+      }
+
+      // Navigate when clicking the lesson three button
+      const lessonThreeBtn = document.getElementById('lessonThreeBtn');
+      if (lessonThreeBtn) {
+        lessonThreeBtn.addEventListener('click', function () {
+          const target = lessonThreeBtn.dataset.target || 'index.html';
+          window.location.href = target;
+        });
+      }
     </script>
   </body>
 </html>
