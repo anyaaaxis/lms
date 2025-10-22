@@ -92,6 +92,14 @@
         .strip.bottom {
           border-radius: 18px 18px 0 0;
         }
+        /* Enlarge mobile road to touch bottom */
+        .center-visual {
+          top: 50%;
+        }
+        .center-visual__img {
+          height: 100vh;
+          width: auto;
+        }
       }
       .center-btn {
         position: fixed;
@@ -418,11 +426,17 @@
       class="center-visual"
       aria-hidden="true"
     >
-      <img
-        src="assets/img/jalanan.png"
-        alt="jalan"
-        class="center-visual__img"
-      />
+      <picture>
+        <source
+          srcset="assets/img/jalanan_hp.png"
+          media="(max-width: 600px)"
+        />
+        <img
+          src="assets/img/jalanan.png"
+          alt="jalan"
+          class="center-visual__img"
+        />
+      </picture>
     </div>
 
     <!-- Kids walking image (left side) -->
@@ -447,7 +461,7 @@
       class="lesson-one"
       aria-label="Buka Materi 1"
       title="Materi 1"
-      data-target="index.html"
+      data-target="pre_test.html"
     >
       <img
         src="assets/img/satu_button.png"
