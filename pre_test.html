@@ -57,14 +57,16 @@
         margin-right: clamp(12px, 2.5vw, 20px); /* geser dari kanan agar lengkung simetris */
       }
       .strip.top .logo {
-        height: 56px;
+        height: 65px;
         width: auto;
+        filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
       }
       .header-text {
-        line-height: 1.25;
+        line-height: 1.4;
+        font-size: 1.3rem;
       }
       .header-text .user-name {
-        font-weight: 700;
+        font-weight: 600;
       }
 
       .container {
@@ -76,7 +78,7 @@
         margin: 2px 0 12px;
       }
 
-      /* Panel styling - SVG image */
+      /* Panel styling - CSS shapes */
       .panel-wrapper {
         width: 100vw;
         position: relative;
@@ -84,53 +86,173 @@
         right: 50%;
         margin-left: -50vw;
         margin-right: -50vw;
+        padding: 20px 0;
       }
       .panel {
         position: relative;
         width: 100%;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Three layered rounded rectangles */
+      .panel-bg {
+        position: absolute;
+        left: 5%;
+        top: 50%;
+        transform: translateY(-50%) translateX(-15%);
+        width: 85%;
+        height: 200px;
+      }
+
+      .layer-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #d6ab9d;
+        border-radius: 25px;
+        top: 0;
+        left: 0;
+      }
+
+      .layer-middle {
+        position: absolute;
+        width: 100%;
+        height: 90%;
+        background: #fbf3d5;
+        border-radius: 25px;
+        top: 0;
+        left: 0;
+      }
+
+      .layer-front {
+        position: absolute;
+        width: 100%;
+        height: 78%;
+        background: #9baa9a;
+        border-radius: 25px;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 0 40px;
+        box-sizing: border-box;
+      }
+
+      .code-display {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .code-text {
+        font-family: 'MoreSugarRegular', 'Bryndan', sans-serif;
+        font-size: 5rem;
+        color: #fff;
+        letter-spacing: 0.15em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-weight: normal;
+      }
+
+      .copy-btn {
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: transform 0.2s ease, filter 0.2s ease;
+        flex-shrink: 0;
+      }
+
+      .copy-btn:hover {
+        transform: scale(1.08);
+        filter: brightness(1.1);
+      }
+
+      .copy-btn:active {
+        transform: scale(0.95);
+      }
+
+      .copy-btn img {
+        width: 48px;
         height: auto;
         display: block;
       }
-      .panel img {
+
+      /* Toast notification for copy feedback */
+      .toast {
+        position: fixed;
+        top: 120px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-20px);
+        background: #2d3a36;
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .qrcode-box {
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #5f6b68;
+        border-radius: 25px;
+        padding: 20px;
+        width: 280px;
+        max-width: 35%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .qrcode-box img {
         width: 100%;
         height: auto;
         display: block;
-        transform: translate(-75px, 20px);
+        border-radius: 12px;
       }
+
       .qrcode-overlay {
-        position: absolute;
-        top: 50%;
-        left: 55%;
-        transform: translate(45%, -45%);
+        position: relative;
         z-index: 10;
-        max-width: 350px;
-        width: 90%;
       }
       .qrcode-overlay img {
         width: 100%;
         height: auto;
         display: block;
-        transform: none;
       }
 
       /* Wayground button */
       .wayground-btn {
         position: absolute;
-        bottom: 10%;
-        left: 58%;
-        transform: translateX(-50%);
+        bottom: -8%;
+        left: 35%;
+        transform: translateX(70%);
         z-index: 10;
         cursor: pointer;
         transition: transform 0.3s ease, filter 0.3s ease;
         width: 250px;
-        max-width: 90%;
+        max-width: 40%;
       }
       .wayground-btn:hover {
-        transform: translateX(-50%) scale(1.05);
+        transform: translateX(70%) scale(1.05);
         filter: brightness(1.1);
       }
       .wayground-btn:active {
-        transform: translateX(-50%) scale(0.98);
+        transform: translateX(70%) scale(0.98);
       }
       .wayground-btn img {
         width: 100%;
@@ -172,14 +294,34 @@
           margin-right: 12px;
         }
         .strip.top .logo {
-          height: 46px;
+          height: 50px;
         }
         .header-text {
           font-size: 1rem;
         }
         .panel {
-          height: auto;
-          min-height: 180px;
+          min-height: 250px;
+        }
+        .panel-bg {
+          height: 160px;
+          width: 80%;
+        }
+        .code-text {
+          font-size: 2rem;
+          letter-spacing: 0.1em;
+        }
+        .copy-btn img {
+          width: 38px;
+        }
+        .qrcode-box {
+          width: 200px;
+          max-width: 40%;
+          padding: 15px;
+        }
+        .wayground-btn {
+          width: 200px;
+          max-width: 50%;
+          left: 30%;
         }
       }
     </style>
@@ -205,19 +347,48 @@
     <main class="container">
       <div class="panel-wrapper">
         <div class="panel">
-          <img
-            src="assets/img/hmmm.svg"
-            alt="Panel Background"
-          />
-          <div class="qrcode-overlay">
-            <img
-              src="assets/img/qrcode/pre_test.png"
-              alt="QR Code Pre Test"
-            />
+          <!-- Background panels -->
+          <div class="panel-bg">
+            <div class="layer-back"></div>
+            <div class="layer-middle"></div>
+            <div class="layer-front">
+              <div class="code-display">
+                <span
+                  class="code-text"
+                  id="codeText"
+                  >42452554</span
+                >
+                <button
+                  class="copy-btn"
+                  id="copyBtn"
+                  aria-label="Salin kode"
+                  title="Salin kode"
+                >
+                  <img
+                    src="assets/img/copy_button.svg"
+                    alt="Salin"
+                  />
+                </button>
+              </div>
+            </div>
           </div>
+
+          <!-- QR Code box -->
+          <div class="qrcode-box">
+            <div class="qrcode-overlay">
+              <img
+                src="assets/img/qrcode/pre_test.png"
+                alt="QR Code Pre Test"
+              />
+            </div>
+          </div>
+
+          <!-- Wayground button -->
           <a
             href="https://wayground.com/join?gc=42452554"
             class="wayground-btn"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <img
               src="assets/img/buka_wayground.svg"
@@ -240,11 +411,43 @@
       />
     </button>
 
+    <!-- Toast notification -->
+    <div
+      class="toast"
+      id="toast"
+    >
+      Kode berhasil disalin!
+    </div>
+
     <script>
       const userName = localStorage.getItem('userName');
       if (userName) document.getElementById('userName').textContent = userName;
-      // Ganti kode secara dinamis jika dibutuhkan:
-      // document.getElementById('codeText').textContent = '12345678';
+
+      // Copy code functionality
+      const copyBtn = document.getElementById('copyBtn');
+      const codeText = document.getElementById('codeText');
+      const toast = document.getElementById('toast');
+
+      copyBtn.addEventListener('click', function () {
+        const code = codeText.textContent;
+
+        // Copy to clipboard
+        navigator.clipboard
+          .writeText(code)
+          .then(function () {
+            // Show toast notification
+            toast.classList.add('show');
+
+            // Hide toast after 2 seconds
+            setTimeout(function () {
+              toast.classList.remove('show');
+            }, 2000);
+          })
+          .catch(function (err) {
+            console.error('Gagal menyalin:', err);
+            alert('Gagal menyalin kode');
+          });
+      });
 
       function handleWaygroundClick(event) {
         event.preventDefault();

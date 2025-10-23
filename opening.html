@@ -92,14 +92,6 @@
         .strip.bottom {
           border-radius: 18px 18px 0 0;
         }
-        /* Enlarge mobile road to touch bottom */
-        .center-visual {
-          top: 50%;
-        }
-        .center-visual__img {
-          height: 100vh;
-          width: auto;
-        }
       }
       .center-btn {
         position: fixed;
@@ -152,36 +144,53 @@
       /* Centered visual (jalanan.png) */
       .center-visual {
         position: fixed;
-        top: calc(50% + 24px); /* lowered a bit from exact center */
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 100vw; /* span full viewport width */
+        width: 100vw;
+        height: calc(100vh - 90px); /* Kurangi tinggi header */
         display: flex;
         justify-content: center;
         align-items: center;
-        pointer-events: none; /* allow clicks through */
-        z-index: 1; /* behind header and buttons */
+        pointer-events: none;
+        z-index: 1;
+        padding-top: 90px; /* Beri ruang untuk header */
       }
       .center-visual__img {
-        width: 100%; /* fill container width */
-        max-width: none;
-        height: auto;
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Jaga proporsi gambar */
         display: block;
+      }
+      /* Container untuk tombol-tombol yang akan mengikuti gambar ular */
+      .lesson-buttons-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -43%);
+        width: 100vw;
+        aspect-ratio: 16 / 9; /* Sesuaikan dengan rasio gambar jalanan */
+        pointer-events: none;
+        z-index: 2;
+        max-height: 100vh;
+      }
+      .lesson-buttons-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
       }
       /* Lesson one button (satu_button) above the snake body */
       .lesson-one {
-        position: fixed;
-        /* Place above the first big hump of the snake */
-        top: calc(50% - 40px);
-        left: 33vw;
-        transform: translate(-50%, -35%);
-        width: clamp(30px, 9vw, 70px); /* size of the circular badge */
-        z-index: 2; /* above road, below header */
+        position: absolute;
+        top: 47%; /* Posisi vertikal dari atas container */
+        left: 27%; /* Posisi horizontal dari kiri container */
+        transform: translate(-10%, -120%);
+        width: clamp(30px, 5vw, 70px);
         background: transparent;
         border: none;
         padding: 0;
         cursor: pointer;
-        pointer-events: auto; /* make it clickable */
+        pointer-events: auto;
         filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
       }
       .lesson-one img {
@@ -196,12 +205,11 @@
       }
       /* Lesson two button (dua_button) at the top hump */
       .lesson-two {
-        position: fixed;
-        top: calc(50% - 119px); /* above the center, on the highest hump */
-        left: 50vw; /* roughly centered horizontally */
-        transform: translate(-50%, -50%);
-        width: clamp(30px, 9vw, 70px); /* match size with lesson-one */
-        z-index: 2;
+        position: absolute;
+        top: 34%; /* Posisi vertikal dari atas container */
+        left: 50%; /* Posisi horizontal di tengah */
+        transform: translate(-50%, -110%);
+        width: clamp(30px, 5vw, 70px);
         background: transparent;
         border: none;
         padding: 0;
@@ -221,12 +229,11 @@
       }
       /* Lesson three button (tiga_button) near lower-right curve */
       .lesson-three {
-        position: fixed;
-        top: calc(50% + 50px); /* slightly below road center, on the lower curve */
-        left: 63.7vw; /* right area before the snake head */
-        transform: translate(-50%, -50%);
-        width: clamp(30px, 9vw, 70px); /* match size with others */
-        z-index: 2;
+        position: absolute;
+        top: 55%; /* Posisi vertikal dari atas container */
+        left: 63%; /* Posisi horizontal dari kiri container */
+        transform: translate(-35%, -50%);
+        width: clamp(30px, 5vw, 70px);
         background: transparent;
         border: none;
         padding: 0;
@@ -243,6 +250,28 @@
       .lesson-three:hover img {
         transform: scale(1.06);
         filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+      }
+
+      /* Media query untuk mobile */
+      @media (max-width: 600px) {
+        .lesson-buttons-container {
+          aspect-ratio: 9 / 16; /* Rasio untuk mobile vertikal */
+        }
+        .lesson-one {
+          top: 48%;
+          left: 23%;
+          width: clamp(25px, 8vw, 50px);
+        }
+        .lesson-two {
+          top: 32%;
+          left: 50%;
+          width: clamp(25px, 8vw, 50px);
+        }
+        .lesson-three {
+          top: 56%;
+          left: 68%;
+          width: clamp(25px, 8vw, 50px);
+        }
       }
       /* Kids image on the left side of the road */
       .kids-left {
@@ -439,6 +468,53 @@
       </picture>
     </div>
 
+    <!-- Container untuk tombol yang mengikuti posisi gambar ular -->
+    <div class="lesson-buttons-container">
+      <div class="lesson-buttons-wrapper">
+        <!-- Lesson one clickable button near the first point on the road -->
+        <button
+          id="lessonOneBtn"
+          class="lesson-one"
+          aria-label="Buka Materi 1"
+          title="Materi 1"
+          data-target="pre_test.html"
+        >
+          <img
+            src="assets/img/satu_button.png"
+            alt=""
+          />
+        </button>
+
+        <!-- Lesson two clickable button on the top hump of the snake -->
+        <button
+          id="lessonTwoBtn"
+          class="lesson-two"
+          aria-label="Buka Materi 2"
+          title="Materi 2"
+          data-target="index.html"
+        >
+          <img
+            src="assets/img/dua_button.png"
+            alt=""
+          />
+        </button>
+
+        <!-- Lesson three clickable button near the lower-right curve -->
+        <button
+          id="lessonThreeBtn"
+          class="lesson-three"
+          aria-label="Buka Materi 3"
+          title="Materi 3"
+          data-target="index.html"
+        >
+          <img
+            src="assets/img/tiga_button.png"
+            alt=""
+          />
+        </button>
+      </div>
+    </div>
+
     <!-- Kids walking image (left side) -->
     <img
       src="assets/img/anak_jalan..png"
@@ -454,34 +530,6 @@
       class="kids-right"
       aria-hidden="true"
     />
-
-    <!-- Lesson one clickable button near the first point on the road -->
-    <button
-      id="lessonOneBtn"
-      class="lesson-one"
-      aria-label="Buka Materi 1"
-      title="Materi 1"
-      data-target="pre_test.html"
-    >
-      <img
-        src="assets/img/satu_button.png"
-        alt=""
-      />
-    </button>
-
-    <!-- Lesson two clickable button on the top hump of the snake -->
-    <button
-      id="lessonTwoBtn"
-      class="lesson-two"
-      aria-label="Buka Materi 2"
-      title="Materi 2"
-      data-target="index.html"
-    >
-      <img
-        src="assets/img/dua_button.png"
-        alt=""
-      />
-    </button>
 
     <div class="strip top">
       <img
@@ -512,19 +560,6 @@
       </button>
     </div>
 
-    <!-- Lesson three clickable button near the lower-right curve -->
-    <button
-      id="lessonThreeBtn"
-      class="lesson-three"
-      aria-label="Buka Materi 3"
-      title="Materi 3"
-      data-target="index.html"
-    >
-      <img
-        src="assets/img/tiga_button.png"
-        alt=""
-      />
-    </button>
     <div class="strip bottom hide">
       <div class="testimonials">
         <button
