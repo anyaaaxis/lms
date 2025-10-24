@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Buka Video Pembelajaran</title>
+    <style>
+        @font-face {
+            font-family: 'Bryndan';
+            src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Moresugar';
+            src: url('assets/fonts/moresugar_regular.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #fbf3d7;
+            color: #6b3b3b;
+            font-family: 'Bryndan', 'Moresugar', Arial, sans-serif;
+            box-sizing: border-box;
+            min-height: 100vh;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-content {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .judul {
+            font-family: 'Bryndan', 'Moresugar', Arial, sans-serif;
+            font-size: 2.3rem;
+            color: #6b3b3b;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            margin-top: 0;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .video-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #c28d7e;
+            color: #fff;
+            font-family: 'Bryndan', 'Moresugar', Arial, sans-serif;
+            font-size: 2.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 56px;
+            padding: 0.7em 2.2em 0.7em 2em;
+            margin: 0 auto 2.8rem auto;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s, transform 0.18s;
+            gap: 1.1em;
+            text-decoration: none;
+            /* hilangkan garis bawah link */
+        }
+
+        .video-btn:hover {
+            background: #b77972;
+            transform: scale(1.03);
+        }
+
+        .video-btn img {
+            width: 48px;
+            height: 48px;
+            margin-left: 0.3em;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .nav-row {
+            width: 420px;
+            max-width: 90vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.18s;
+        }
+
+        .nav-btn:active,
+        .nav-btn:hover {
+            transform: scale(1.08);
+        }
+
+        .nav-btn img {
+            width: 68px;
+            height: 68px;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+        }
+
+        @media (max-width: 700px) {
+            .judul {
+                font-size: 1.35rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .video-btn {
+                font-size: 1.25rem;
+                padding: 0.7em 1.1em 0.7em 1em;
+            }
+
+            .video-btn img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .nav-row {
+                width: 90vw;
+                max-width: 98vw;
+            }
+
+            .nav-btn img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .ngintip-kanan {
+                width: 200px;
+            }
+        }
+
+        .ngintip-kanan {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: auto;
+            width: clamp(280px, 30vw, 400px);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .ngintip-kiri {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: auto;
+            width: clamp(280px, 30vw, 400px);
+            z-index: 10;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-content">
+        <img src="assets/img/ngintip_kiri.png" alt="" class="ngintip-kiri" aria-hidden="true">
+        <img src="assets/img/ngintip_kanan.png" alt="" class="ngintip-kanan" aria-hidden="true">
+        <div class="judul">
+            Agar semakin paham, yuk simak video di<br> bawah ini!
+        </div>
+        <a href="https://youtu.be/F084lSVB-sQ?si=FBzV5qBtctLRPJ0a" target="_blank" rel="noopener noreferrer"
+            class="video-btn">
+            Buka Video Pembelajaran
+        </a>
+        <div class="nav-row">
+            <button class="nav-btn" onclick="window.location.href='materi13.html'" aria-label="Sebelumnya">
+                <img src="assets/img/prev_button.png" alt="Sebelumnya">
+            </button>
+            <button class="nav-btn" onclick="window.location.href='opening.html'" aria-label="Selanjutnya">
+                <img src="assets/img/next_button.png" alt="Selanjutnya">
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
