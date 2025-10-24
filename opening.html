@@ -1,657 +1,677 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>Opening - Star Girl Academy</title>
-    <style>
-      @font-face {
-        font-family: 'Bryndan';
-        src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        min-height: 100vh;
-        background: #fbf3d7;
-        position: relative;
-        overflow: hidden;
-      }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opening - Star Girl Academy</title>
+  <style>
+    @font-face {
+      font-family: 'Bryndan';
+      src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #fbf3d7;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strip {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background: #9db0ac;
+      border-radius: 0 0 32px 32px;
+      box-sizing: border-box;
+      overflow: hidden;
+      /* ensure children don't overflow border radius */
+    }
+
+    .strip.top {
+      top: 0;
+      /* Only round the bottom corners of the top strip; keep top corners square */
+      border-radius: 0 0 32px 32px;
+      z-index: 5;
+      /* keep header above center visual */
+      display: flex;
+      align-items: center;
+      padding-left: 32px;
+      padding-right: 32px;
+      gap: 1.5rem;
+      justify-content: flex-start;
+    }
+
+    .strip.top img {
+      height: 65px;
+      width: auto;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+      flex-shrink: 0;
+    }
+
+    .greeting-text {
+      color: #fff;
+      font-family: 'Bryndan', sans-serif;
+      font-size: 1.3rem;
+      line-height: 1.4;
+      font-weight: 400;
+      flex: 1;
+    }
+
+    .greeting-text .user-name {
+      font-weight: 600;
+    }
+
+    .strip.bottom {
+      bottom: 0;
+      border-radius: 32px 32px 0 0;
+    }
+
+    @media (max-width: 600px) {
       .strip {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 90px;
-        background: #9db0ac;
-        border-radius: 0 0 32px 32px;
-        box-sizing: border-box;
-        overflow: hidden; /* ensure children don't overflow border radius */
-      }
-      .strip.top {
-        top: 0;
-        /* Only round the bottom corners of the top strip; keep top corners square */
-        border-radius: 0 0 32px 32px;
-        z-index: 5; /* keep header above center visual */
-        display: flex;
-        align-items: center;
-        padding-left: 32px;
-        padding-right: 32px;
-        gap: 1.5rem;
-        justify-content: flex-start;
-      }
-      .strip.top img {
-        height: 65px;
-        width: auto;
-        filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
-        flex-shrink: 0;
-      }
-      .greeting-text {
-        color: #fff;
-        font-family: 'Bryndan', sans-serif;
-        font-size: 1.3rem;
-        line-height: 1.4;
-        font-weight: 400;
-        flex: 1;
-      }
-      .greeting-text .user-name {
-        font-weight: 600;
-      }
-      .strip.bottom {
-        bottom: 0;
-        border-radius: 32px 32px 0 0;
-      }
-      @media (max-width: 600px) {
-        .strip {
-          height: 60px;
-          border-radius: 0 0 18px 18px;
-        }
-        .strip.top {
-          height: 80px;
-          /* Only round bottom corners on smaller screens as well */
-          border-radius: 0 0 18px 18px;
-          padding-left: 16px;
-          padding-right: 16px;
-          gap: 1rem;
-        }
-        .strip.top img {
-          height: 50px;
-        }
-        .greeting-text {
-          font-size: 1rem;
-        }
-        .strip.bottom {
-          border-radius: 18px 18px 0 0;
-        }
-      }
-      .center-btn {
-        position: fixed;
-        bottom: 32px;
-        right: 32px;
-        pointer-events: auto;
-        z-index: 2;
-      }
-      .btn-show {
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        transition: transform 0.3s, opacity 0.3s;
-        position: relative;
-      }
-      .btn-show img {
-        display: block;
-        width: 60px;
         height: 60px;
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-      }
-      .btn-show:hover {
-        transform: translateY(-3px);
-        opacity: 0.9;
-      }
-      .btn-show:active {
-        transform: translateY(0);
-      }
-      .btn-show::after {
-        content: attr(data-tooltip);
-        position: absolute;
-        bottom: 100%;
-        right: 0;
-        background: #2d3a36;
-        color: #fff;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        white-space: nowrap;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s;
-        margin-bottom: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      }
-      .btn-show:hover::after {
-        opacity: 1;
-      }
-      /* Centered visual (jalanan.png) */
-      .center-visual {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100vw;
-        height: calc(100vh - 90px); /* Kurangi tinggi header */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: none;
-        z-index: 1;
-        padding-top: 90px; /* Beri ruang untuk header */
-      }
-      .center-visual__img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain; /* Jaga proporsi gambar */
-        display: block;
-      }
-      /* Container untuk tombol-tombol yang akan mengikuti gambar ular */
-      .lesson-buttons-container {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -43%);
-        width: 100vw;
-        aspect-ratio: 16 / 9; /* Sesuaikan dengan rasio gambar jalanan */
-        pointer-events: none;
-        z-index: 2;
-        max-height: 100vh;
-      }
-      .lesson-buttons-wrapper {
-        position: relative;
-        width: 100%;
-        height: 100%;
-      }
-      /* Lesson one button (satu_button) above the snake body */
-      .lesson-one {
-        position: absolute;
-        top: 47%; /* Posisi vertikal dari atas container */
-        left: 27%; /* Posisi horizontal dari kiri container */
-        transform: translate(-10%, -120%);
-        width: clamp(30px, 5vw, 70px);
-        background: transparent;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        pointer-events: auto;
-        filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
-      }
-      .lesson-one img {
-        width: 100%;
-        height: auto;
-        display: block;
-        transition: transform 0.15s ease, filter 0.15s ease;
-      }
-      .lesson-one:hover img {
-        transform: scale(1.06);
-        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
-      }
-      /* Lesson two button (dua_button) at the top hump */
-      .lesson-two {
-        position: absolute;
-        top: 34%; /* Posisi vertikal dari atas container */
-        left: 50%; /* Posisi horizontal di tengah */
-        transform: translate(-50%, -110%);
-        width: clamp(30px, 5vw, 70px);
-        background: transparent;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        pointer-events: auto;
-        filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
-      }
-      .lesson-two img {
-        width: 100%;
-        height: auto;
-        display: block;
-        transition: transform 0.15s ease, filter 0.15s ease;
-      }
-      .lesson-two:hover img {
-        transform: scale(1.06);
-        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
-      }
-      /* Lesson three button (tiga_button) near lower-right curve */
-      .lesson-three {
-        position: absolute;
-        top: 55%; /* Posisi vertikal dari atas container */
-        left: 63%; /* Posisi horizontal dari kiri container */
-        transform: translate(-35%, -50%);
-        width: clamp(30px, 5vw, 70px);
-        background: transparent;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        pointer-events: auto;
-        filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
-      }
-      .lesson-three img {
-        width: 100%;
-        height: auto;
-        display: block;
-        transition: transform 0.15s ease, filter 0.15s ease;
-      }
-      .lesson-three:hover img {
-        transform: scale(1.06);
-        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+        border-radius: 0 0 18px 18px;
       }
 
-      /* Media query untuk mobile */
-      @media (max-width: 600px) {
-        .lesson-buttons-container {
-          aspect-ratio: 9 / 16; /* Rasio untuk mobile vertikal */
-        }
-        .lesson-one {
-          top: 48%;
-          left: 23%;
-          width: clamp(25px, 8vw, 50px);
-        }
-        .lesson-two {
-          top: 32%;
-          left: 50%;
-          width: clamp(25px, 8vw, 50px);
-        }
-        .lesson-three {
-          top: 56%;
-          left: 68%;
-          width: clamp(25px, 8vw, 50px);
-        }
+      .strip.top {
+        height: 80px;
+        /* Only round bottom corners on smaller screens as well */
+        border-radius: 0 0 18px 18px;
+        padding-left: 16px;
+        padding-right: 16px;
+        gap: 1rem;
       }
-      /* Kids image on the left side of the road */
-      .kids-left {
-        position: fixed;
-        top: calc(50% + 24px); /* align bottom to road center line */
-        left: 4vw; /* shift a bit further left */
-        transform: translateY(-100%); /* bottom of image sits on the line */
-        width: clamp(100px, 14.5vw, 205px); /* slightly reduced size */
-        height: auto;
-        z-index: 2; /* above the road, below header */
-        pointer-events: none;
+
+      .strip.top img {
+        height: 50px;
       }
-      /* Kids image on the right side of the road (near FINISH) */
-      .kids-right {
-        position: fixed;
-        top: calc(50% + 40px); /* lift a bit so bottom sits just above the road line */
-        right: 14.5vw; /* move closer to the snake */
-        transform: translateY(-100%);
-        width: clamp(118px, 17vw, 235px); /* slightly larger than left */
-        height: auto;
-        z-index: 2; /* above the road, below header */
-        pointer-events: none;
+
+      .greeting-text {
+        font-size: 1rem;
       }
+
       .strip.bottom {
-        height: 260px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        padding-top: 28px;
-        padding-bottom: 30px; /* reduced further to move cards higher */
-        box-sizing: border-box;
-        z-index: 3;
-        position: absolute;
-        left: 0;
-        width: 100%;
-        bottom: 0;
-        transition: transform 0.7s cubic-bezier(0.7, 1.5, 0.5, 1), opacity 0.5s;
-        transform: translateY(100%);
-        opacity: 0;
-        pointer-events: none;
+        border-radius: 18px 18px 0 0;
       }
-      .strip.bottom.show {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
+    }
+
+    .center-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .btn-show {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      position: relative;
+    }
+
+    .btn-show img {
+      display: block;
+      width: 60px;
+      height: 60px;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
+
+    .btn-show:hover {
+      transform: translateY(-3px);
+      opacity: 0.9;
+    }
+
+    .btn-show:active {
+      transform: translateY(0);
+    }
+
+    .btn-show::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      background: #2d3a36;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-show:hover::after {
+      opacity: 1;
+    }
+
+    /* Centered visual (jalanan.png) */
+    .center-visual {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      height: calc(100vh - 90px);
+      /* Kurangi tinggi header */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      z-index: 1;
+      padding-top: 90px;
+      /* Beri ruang untuk header */
+    }
+
+    .center-visual__img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      /* Jaga proporsi gambar */
+      display: block;
+    }
+
+    /* Container untuk tombol-tombol yang akan mengikuti gambar ular */
+    .lesson-buttons-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -43%);
+      width: 100vw;
+      aspect-ratio: 16 / 9;
+      /* Sesuaikan dengan rasio gambar jalanan */
+      pointer-events: none;
+      z-index: 2;
+      max-height: 100vh;
+    }
+
+    .lesson-buttons-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Lesson one button (satu_button) above the snake body */
+    .lesson-one {
+      position: absolute;
+      top: 47%;
+      /* Posisi vertikal dari atas container */
+      left: 27%;
+      /* Posisi horizontal dari kiri container */
+      transform: translate(-10%, -120%);
+      width: clamp(30px, 5vw, 70px);
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      pointer-events: auto;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+    }
+
+    .lesson-one img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .lesson-one:hover img {
+      transform: scale(1.06);
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+    }
+
+    /* Lesson two button (dua_button) at the top hump */
+    .lesson-two {
+      position: absolute;
+      top: 34%;
+      /* Posisi vertikal dari atas container */
+      left: 50%;
+      /* Posisi horizontal di tengah */
+      transform: translate(-50%, -110%);
+      width: clamp(30px, 5vw, 70px);
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      pointer-events: auto;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+    }
+
+    .lesson-two img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .lesson-two:hover img {
+      transform: scale(1.06);
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+    }
+
+    /* Lesson three button (tiga_button) near lower-right curve */
+    .lesson-three {
+      position: absolute;
+      top: 55%;
+      /* Posisi vertikal dari atas container */
+      left: 63%;
+      /* Posisi horizontal dari kiri container */
+      transform: translate(-35%, -50%);
+      width: clamp(30px, 5vw, 70px);
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      pointer-events: auto;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+    }
+
+    .lesson-three img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .lesson-three:hover img {
+      transform: scale(1.06);
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+    }
+
+    /* Media query untuk mobile */
+    @media (max-width: 600px) {
+      .lesson-buttons-container {
+        aspect-ratio: 9 / 16;
+        /* Rasio untuk mobile vertikal */
       }
-      .strip.bottom.hide {
-        transform: translateY(100%);
-        opacity: 0;
-        pointer-events: none;
+
+      .lesson-one {
+        top: 48%;
+        left: 23%;
+        width: clamp(25px, 8vw, 50px);
       }
-      .testimonials {
-        width: 100%;
-        max-width: 1150px;
-        margin: 0 auto;
-        text-align: center;
-        margin-bottom: 110px; /* increased further for more space above cards */
-        position: relative;
+
+      .lesson-two {
+        top: 32%;
+        left: 50%;
+        width: clamp(25px, 8vw, 50px);
       }
-      /* Use Bryndan font for all testimonial elements */
-      .testimonials,
-      .testi-header,
-      .testi-header h2,
-      .testi-header p,
-      .testi-list,
-      .testi-card,
-      .testi-icon,
-      .stars,
-      .testi-text {
-        font-family: 'Bryndan', sans-serif;
+
+      .lesson-three {
+        top: 56%;
+        left: 68%;
+        width: clamp(25px, 8vw, 50px);
       }
-      .testi-header h2 {
-        color: #fff;
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 0.2rem;
-      }
-      .testi-header p {
-        color: #f8f8f8;
-        font-size: 1rem;
-        margin-bottom: 1.2rem;
-      }
+    }
+
+    /* Kids image on the left side of the road */
+    .kids-left {
+      position: fixed;
+      top: calc(50% + 24px);
+      /* align bottom to road center line */
+      left: 4vw;
+      /* shift a bit further left */
+      transform: translateY(-100%);
+      /* bottom of image sits on the line */
+      width: clamp(100px, 14.5vw, 205px);
+      /* slightly reduced size */
+      height: auto;
+      z-index: 2;
+      /* above the road, below header */
+      pointer-events: none;
+    }
+
+    /* Kids image on the right side of the road (near FINISH) */
+    .kids-right {
+      position: fixed;
+      top: calc(50% + 40px);
+      /* lift a bit so bottom sits just above the road line */
+      right: 14.5vw;
+      /* move closer to the snake */
+      transform: translateY(-100%);
+      width: clamp(118px, 17vw, 235px);
+      /* slightly larger than left */
+      height: auto;
+      z-index: 2;
+      /* above the road, below header */
+      pointer-events: none;
+    }
+
+    .strip.bottom {
+      height: 260px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 28px;
+      padding-bottom: 30px;
+      /* reduced further to move cards higher */
+      box-sizing: border-box;
+      z-index: 3;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+      transition: transform 0.7s cubic-bezier(0.7, 1.5, 0.5, 1), opacity 0.5s;
+      transform: translateY(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .strip.bottom.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .strip.bottom.hide {
+      transform: translateY(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .testimonials {
+      width: 100%;
+      max-width: 1150px;
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 110px;
+      /* increased further for more space above cards */
+      position: relative;
+    }
+
+    /* Use Bryndan font for all testimonial elements */
+    .testimonials,
+    .testi-header,
+    .testi-header h2,
+    .testi-header p,
+    .testi-list,
+    .testi-card,
+    .testi-icon,
+    .stars,
+    .testi-text {
+      font-family: 'Bryndan', sans-serif;
+    }
+
+    .testi-header h2 {
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .testi-header p {
+      color: #f8f8f8;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .testi-list {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .testi-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      padding: 1.1rem 1.2rem 0.8rem 1.2rem;
+      min-width: 220px;
+      max-width: 260px;
+      text-align: left;
+      border: 2px solid #f8a641;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .testi-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .dot {
+      width: 18px;
+      height: 18px;
+      background: #f8a641;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .stars {
+      color: #f8a641;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .testi-text {
+      color: #222;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .btn-close {
+      position: absolute;
+      top: 18px;
+      right: 32px;
+      background: #fff;
+      color: #2d3a36;
+      border: 2px solid #f8a641;
+      border-radius: 50%;
+      font-size: 2rem;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-close:hover {
+      background: #f8a641;
+      color: #fff;
+    }
+
+    @media (max-width: 900px) {
       .testi-list {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        align-items: flex-start;
+        gap: 1rem;
       }
+
       .testi-card {
-        background: #fff;
-        border-radius: 16px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-        padding: 1.1rem 1.2rem 0.8rem 1.2rem;
-        min-width: 220px;
-        max-width: 260px;
-        text-align: left;
-        border: 2px solid #f8a641;
-        display: flex;
+        min-width: 160px;
+        max-width: 200px;
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .strip.bottom {
+        border-radius: 18px 18px 0 0;
+        height: 260px;
+        padding-top: 18px;
+        padding-bottom: 30px;
+        /* reduced further for mobile */
+      }
+
+      .testi-list {
         flex-direction: column;
-        gap: 0.5rem;
-      }
-      .testi-icon {
-        display: flex;
+        gap: 1.1rem;
         align-items: center;
-        gap: 0.4rem;
-        margin-bottom: 0.2rem;
       }
-      .dot {
-        width: 18px;
-        height: 18px;
-        background: #f8a641;
-        border-radius: 50%;
-        display: inline-block;
-      }
-      .stars {
-        color: #f8a641;
-        font-size: 1.05rem;
-        font-weight: 600;
-        letter-spacing: 1px;
-      }
-      .testi-text {
-        color: #222;
-        font-size: 1rem;
-        font-weight: 500;
-      }
-      .btn-close {
-        position: absolute;
-        top: 18px;
-        right: 32px;
-        background: #fff;
-        color: #2d3a36;
-        border: 2px solid #f8a641;
-        border-radius: 50%;
-        font-size: 2rem;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-        transition: background 0.2s, color 0.2s;
-      }
-      .btn-close:hover {
-        background: #f8a641;
-        color: #fff;
-      }
-      @media (max-width: 900px) {
-        .testi-list {
-          gap: 1rem;
-        }
-        .testi-card {
-          min-width: 160px;
-          max-width: 200px;
-          font-size: 0.95rem;
-        }
-      }
-      @media (max-width: 600px) {
-        .strip.bottom {
-          border-radius: 18px 18px 0 0;
-          height: 260px;
-          padding-top: 18px;
-          padding-bottom: 30px; /* reduced further for mobile */
-        }
-        .testi-list {
-          flex-direction: column;
-          gap: 1.1rem;
-          align-items: center;
-        }
-        .testimonials {
-          max-width: 98vw;
-          margin-bottom: 80px; /* increased for mobile */
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Centered road image -->
-    <div
-      class="center-visual"
-      aria-hidden="true"
-    >
-      <picture>
-        <source
-          srcset="assets/img/jalanan_hp.png"
-          media="(max-width: 600px)"
-        />
-        <img
-          src="assets/img/jalanan.png"
-          alt="jalan"
-          class="center-visual__img"
-        />
-      </picture>
-    </div>
 
-    <!-- Container untuk tombol yang mengikuti posisi gambar ular -->
-    <div class="lesson-buttons-container">
-      <div class="lesson-buttons-wrapper">
-        <!-- Lesson one clickable button near the first point on the road -->
-        <button
-          id="lessonOneBtn"
-          class="lesson-one"
-          aria-label="Buka Materi 1"
-          title="Materi 1"
-          data-target="pre_test.html"
-        >
-          <img
-            src="assets/img/satu_button.png"
-            alt=""
-          />
-        </button>
+      .testimonials {
+        max-width: 98vw;
+        margin-bottom: 80px;
+        /* increased for mobile */
+      }
+    }
+  </style>
+</head>
 
-        <!-- Lesson two clickable button on the top hump of the snake -->
-        <button
-          id="lessonTwoBtn"
-          class="lesson-two"
-          aria-label="Buka Materi 2"
-          title="Materi 2"
-          data-target="index.html"
-        >
-          <img
-            src="assets/img/dua_button.png"
-            alt=""
-          />
-        </button>
+<body>
+  <!-- Centered road image -->
+  <div class="center-visual" aria-hidden="true">
+    <picture>
+      <source srcset="assets/img/jalanan_hp.png" media="(max-width: 600px)" />
+      <img src="assets/img/jalanan.png" alt="jalan" class="center-visual__img" />
+    </picture>
+  </div>
 
-        <!-- Lesson three clickable button near the lower-right curve -->
-        <button
-          id="lessonThreeBtn"
-          class="lesson-three"
-          aria-label="Buka Materi 3"
-          title="Materi 3"
-          data-target="index.html"
-        >
-          <img
-            src="assets/img/tiga_button.png"
-            alt=""
-          />
-        </button>
-      </div>
-    </div>
+  <!-- Container untuk tombol yang mengikuti posisi gambar ular -->
+  <div class="lesson-buttons-container">
+    <div class="lesson-buttons-wrapper">
+      <!-- Lesson one clickable button near the first point on the road -->
+      <button id="lessonOneBtn" class="lesson-one" aria-label="Buka Pre Test" title="Pre Test"
+        data-target="pre_test.html">
+        <img src="assets/img/satu_button.png" alt="" />
+      </button>
 
-    <!-- Kids walking image (left side) -->
-    <img
-      src="assets/img/anak_jalan..png"
-      alt="Anak berjalan"
-      class="kids-left"
-      aria-hidden="true"
-    />
+      <!-- Lesson two clickable button on the top hump of the snake -->
+      <button id="lessonTwoBtn" class="lesson-two" aria-label="Buka Materi" title="Materi" data-target="index.html">
+        <img src="assets/img/dua_button.png" alt="" />
+      </button>
 
-    <!-- Kids cheering image (right side near FINISH) -->
-    <img
-      src="assets/img/anak_finish.png"
-      alt="Anak melambaikan tangan"
-      class="kids-right"
-      aria-hidden="true"
-    />
-
-    <div class="strip top">
-      <img
-        src="assets/img/book_lamp.png"
-        alt="Book and Lamp"
-      />
-      <div class="greeting-text">
-        Hai,
-        <span
-          class="user-name"
-          id="userName"
-          >Bestie</span
-        >!<br />
-        Hari ini kita akan mempelajari Sistem Persamaan Linear Tiga Variabel
-      </div>
-    </div>
-    <div class="center-btn">
-      <button
-        id="showTestiBtn"
-        class="btn-show"
-        data-tooltip="Lihat Testimoni"
-        aria-label="Lihat Testimoni"
-      >
-        <img
-          src="assets/img/up_button.png"
-          alt="Lihat Testimoni"
-        />
+      <!-- Lesson three clickable button near the lower-right curve -->
+      <button id="lessonThreeBtn" class="lesson-three" aria-label="Buka Post Test" title="Post Test"
+        data-target="post_test.html">
+        <img src="assets/img/tiga_button.png" alt="" />
       </button>
     </div>
+  </div>
 
-    <div class="strip bottom hide">
-      <div class="testimonials">
-        <button
-          id="closeTestiBtn"
-          class="btn-close"
-          aria-label="Tutup Testimoni"
-        >
-          &times;
-        </button>
-        <div class="testi-header">
-          <h2>Apa Kata Mereka?</h2>
-          <p>Pengalaman Bestie yang sudah belajar memahami konsep di Star Girl Academy</p>
+  <!-- Kids walking image (left side) -->
+  <img src="assets/img/anak_jalan..png" alt="Anak berjalan" class="kids-left" aria-hidden="true" />
+
+  <!-- Kids cheering image (right side near FINISH) -->
+  <img src="assets/img/anak_finish.png" alt="Anak melambaikan tangan" class="kids-right" aria-hidden="true" />
+
+  <div class="strip top">
+    <img src="assets/img/book_lamp.png" alt="Book and Lamp" />
+    <div class="greeting-text">
+      Hai,
+      <span class="user-name" id="userName">Bestie</span>!<br />
+      Hari ini kita akan mempelajari Sistem Persamaan Linear Tiga Variabel
+    </div>
+  </div>
+  <div class="center-btn">
+    <button id="showTestiBtn" class="btn-show" data-tooltip="Lihat Testimoni" aria-label="Lihat Testimoni">
+      <img src="assets/img/up_button.png" alt="Lihat Testimoni" />
+    </button>
+  </div>
+
+  <div class="strip bottom hide">
+    <div class="testimonials">
+      <button id="closeTestiBtn" class="btn-close" aria-label="Tutup Testimoni">
+        &times;
+      </button>
+      <div class="testi-header">
+        <h2>Apa Kata Mereka?</h2>
+        <p>Pengalaman Bestie yang sudah belajar memahami konsep di Star Girl Academy</p>
+      </div>
+      <div class="testi-list">
+        <div class="testi-card">
+          <div class="testi-icon">
+            <span class="dot"></span>
+            <span class="stars">★★★★★</span>
+          </div>
+          <div class="testi-text">Kursusnya Sangat Asyik dan Menyenangkan !</div>
         </div>
-        <div class="testi-list">
-          <div class="testi-card">
-            <div class="testi-icon">
-              <span class="dot"></span>
-              <span class="stars">★★★★★</span>
-            </div>
-            <div class="testi-text">Kursusnya Sangat Asyik dan Menyenangkan !</div>
+        <div class="testi-card">
+          <div class="testi-icon">
+            <span class="dot"></span>
+            <span class="stars">★★★★★</span>
           </div>
-          <div class="testi-card">
-            <div class="testi-icon">
-              <span class="dot"></span>
-              <span class="stars">★★★★★</span>
-            </div>
-            <div class="testi-text">Worth it banget buat belajar, materinya mudah dipahami</div>
+          <div class="testi-text">Worth it banget buat belajar, materinya mudah dipahami</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-icon">
+            <span class="dot"></span>
+            <span class="stars">★★★★★</span>
           </div>
-          <div class="testi-card">
-            <div class="testi-icon">
-              <span class="dot"></span>
-              <span class="stars">★★★★★</span>
-            </div>
-            <div class="testi-text">Enak banget belajar di Stargirl Academy</div>
+          <div class="testi-text">Enak banget belajar di Stargirl Academy</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-icon">
+            <span class="dot"></span>
+            <span class="stars">★★★★★</span>
           </div>
-          <div class="testi-card">
-            <div class="testi-icon">
-              <span class="dot"></span>
-              <span class="stars">★★★★★</span>
-            </div>
-            <div class="testi-text">Aku Lolos SNBT 2025 karena belajar di Stargirl Academy</div>
-          </div>
+          <div class="testi-text">Aku Lolos SNBT 2025 karena belajar di Stargirl Academy</div>
         </div>
       </div>
     </div>
-    <script>
-      // Load user name from localStorage
-      const userName = localStorage.getItem('userName');
-      if (userName) {
-        document.getElementById('userName').textContent = userName;
-      }
+  </div>
+  <script>
+    // Load user name from localStorage
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+      document.getElementById('userName').textContent = userName;
+    }
 
-      const btn = document.getElementById('showTestiBtn');
-      const stripBottom = document.querySelector('.strip.bottom');
-      btn.addEventListener('click', function () {
-        stripBottom.classList.remove('hide');
-        stripBottom.classList.add('show');
-        btn.style.display = 'none';
+    const btn = document.getElementById('showTestiBtn');
+    const stripBottom = document.querySelector('.strip.bottom');
+    btn.addEventListener('click', function () {
+      stripBottom.classList.remove('hide');
+      stripBottom.classList.add('show');
+      btn.style.display = 'none';
+    });
+    const closeBtn = document.getElementById('closeTestiBtn');
+    closeBtn.addEventListener('click', function () {
+      stripBottom.classList.remove('show');
+      stripBottom.classList.add('hide');
+      btn.style.display = 'block';
+    });
+
+    // Navigate when clicking the lesson one button
+    const lessonOneBtn = document.getElementById('lessonOneBtn');
+    if (lessonOneBtn) {
+      lessonOneBtn.addEventListener('click', function () {
+        const target = lessonOneBtn.dataset.target || 'index.html';
+        window.location.href = target;
       });
-      const closeBtn = document.getElementById('closeTestiBtn');
-      closeBtn.addEventListener('click', function () {
-        stripBottom.classList.remove('show');
-        stripBottom.classList.add('hide');
-        btn.style.display = 'block';
+    }
+
+    // Navigate when clicking the lesson two button
+    const lessonTwoBtn = document.getElementById('lessonTwoBtn');
+    if (lessonTwoBtn) {
+      lessonTwoBtn.addEventListener('click', function () {
+        const target = lessonTwoBtn.dataset.target || 'index.html';
+        window.location.href = target;
       });
+    }
 
-      // Navigate when clicking the lesson one button
-      const lessonOneBtn = document.getElementById('lessonOneBtn');
-      if (lessonOneBtn) {
-        lessonOneBtn.addEventListener('click', function () {
-          const target = lessonOneBtn.dataset.target || 'index.html';
-          window.location.href = target;
-        });
-      }
+    // Navigate when clicking the lesson three button
+    const lessonThreeBtn = document.getElementById('lessonThreeBtn');
+    if (lessonThreeBtn) {
+      lessonThreeBtn.addEventListener('click', function () {
+        const target = lessonThreeBtn.dataset.target || 'index.html';
+        window.location.href = target;
+      });
+    }
+  </script>
+</body>
 
-      // Navigate when clicking the lesson two button
-      const lessonTwoBtn = document.getElementById('lessonTwoBtn');
-      if (lessonTwoBtn) {
-        lessonTwoBtn.addEventListener('click', function () {
-          const target = lessonTwoBtn.dataset.target || 'index.html';
-          window.location.href = target;
-        });
-      }
-
-      // Navigate when clicking the lesson three button
-      const lessonThreeBtn = document.getElementById('lessonThreeBtn');
-      if (lessonThreeBtn) {
-        lessonThreeBtn.addEventListener('click', function () {
-          const target = lessonThreeBtn.dataset.target || 'index.html';
-          window.location.href = target;
-        });
-      }
-    </script>
-  </body>
 </html>
