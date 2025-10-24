@@ -188,6 +188,39 @@
       display: block;
     }
 
+    @media (max-width: 600px) {
+      .center-visual {
+        top: 55%;
+        /* Geser lebih kebawah untuk HP */
+        transform: translate(-70%, -50%) scale(1.15);
+        /* Perbesar sedikit dan geser kebawah */
+      }
+    }
+
+    /* Untuk layar sangat kecil (Galaxy S8+) */
+    @media (max-width: 380px) {
+      .greeting-text {
+        color: #fff;
+        font-family: 'Bryndan', sans-serif;
+        font-size: 0.7rem;
+        line-height: 1.4;
+        font-weight: 400;
+        flex: 1;
+      }
+      .center-visual {
+        top: 52%;
+        transform: translate(-70%, -50%) scale(1.1);
+      }
+    }
+
+    /* Untuk layar sedang (iPhone 12 Pro, Galaxy S20 Ultra) */
+    @media (min-width: 381px) and (max-width: 420px) {
+      .center-visual {
+        top: 54%;
+        transform: translate(-70%, -50%) scale(1.2);
+      }
+    }
+
     /* Container untuk tombol-tombol yang akan mengikuti gambar ular */
     .lesson-buttons-container {
       position: fixed;
@@ -303,21 +336,63 @@
       }
 
       .lesson-one {
-        top: 48%;
-        left: 23%;
-        width: clamp(25px, 8vw, 50px);
+        top: 29%;
+        left: 43%;
+        width: clamp(35px, 10vw, 65px);
       }
 
       .lesson-two {
-        top: 32%;
-        left: 50%;
-        width: clamp(25px, 8vw, 50px);
+        top: 52%;
+        left: 62%;
+        width: clamp(35px, 10vw, 65px);
       }
 
       .lesson-three {
-        top: 56%;
-        left: 68%;
-        width: clamp(25px, 8vw, 50px);
+        top: 60%;
+        left: 15%;
+        width: clamp(35px, 10vw, 65px);
+      }
+    }
+
+    /* Untuk layar sangat kecil (Galaxy S8+) */
+    @media (max-width: 380px) {
+      .lesson-one {
+        top: 25%;
+        left: 45%;
+        width: clamp(35px, 10vw, 65px);
+      }
+
+      .lesson-two {
+        top: 50%;
+        left: 60%;
+        width: clamp(35px, 10vw, 65px);
+      }
+
+      .lesson-three {
+        top: 57%;
+        left: 17%;
+        width: clamp(35px, 10vw, 65px);
+      }
+    }
+
+    /* Untuk layar sedang (iPhone 12 Pro, Galaxy S20 Ultra) */
+    @media (min-width: 381px) and (max-width: 420px) {
+      .lesson-one {
+        top: 25%;
+        left: 45%;
+        width: clamp(35px, 10vw, 65px);
+      }
+
+      .lesson-two {
+        top: 52%;
+        left: 62%;
+        width: clamp(35px, 10vw, 65px);
+      }
+
+      .lesson-three {
+        top: 60%;
+        left: 15%;
+        width: clamp(35px, 10vw, 65px);
       }
     }
 
@@ -352,6 +427,50 @@
       z-index: 2;
       /* above the road, below header */
       pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      .kids-left {
+        top: calc(50% - 240px);
+        /* Pindah ke atas untuk tampilan HP */
+      }
+
+      .kids-right {
+        top: calc(50% + 360px);
+        /* Geser ke bawah untuk tampilan HP */
+        right: 45vw;
+        /* Geser ke kiri untuk tampilan HP */
+      }
+    }
+
+    /* Untuk layar sangat kecil (Galaxy S8+) */
+    @media (max-width: 380px) {
+      .kids-left {
+        top: calc(50% - 200px);
+        left: 3vw;
+        width: clamp(80px, 18vw, 120px);
+      }
+
+      .kids-right {
+        top: calc(50% + 260px);
+        right: 47vw;
+        width: clamp(90px, 20vw, 140px);
+      }
+    }
+
+    /* Untuk layar sedang (iPhone 12 Pro, Galaxy S20 Ultra) */
+    @media (min-width: 381px) and (max-width: 420px) {
+      .kids-left {
+        top: calc(50% - 250px);
+        left: 3.5vw;
+        width: clamp(90px, 16vw, 130px);
+      }
+
+      .kids-right {
+        top: calc(50% + 350px);
+        right: 47vw;
+        width: clamp(100px, 18vw, 150px);
+      }
     }
 
     .strip.bottom {
