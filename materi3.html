@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Pengertian SPLTV - Materi</title>
+    <style>
+        @font-face {
+            font-family: 'Moresugar';
+            src: url('assets/fonts/moresugar_regular.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Bryndan';
+            src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        :root {
+            --bg: #fbf3d7;
+            --ink: #3f3a2d;
+            --accent: #d6ab9d;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background: var(--bg);
+            font-family: 'Moresugar', 'Bryndan', system-ui, Arial, sans-serif;
+            color: var(--ink);
+        }
+
+        /* top-right next button (icon 56x56 like prev) */
+        .next-btn {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            z-index: 50;
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .next-btn img {
+            width: 56px;
+            height: 56px;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+        }
+
+        /* back bottom-left */
+        .back-btn {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 40;
+        }
+
+        .back-btn img {
+            width: 56px;
+            height: 56px;
+            display: block;
+        }
+
+        .stage {
+            max-width: 1180px;
+            margin: 72px auto;
+            padding: 0 28px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .title-pill {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 1.4rem;
+            font-family: 'Bryndan';
+            margin-bottom: 20px;
+        }
+
+        .copy-block {
+            grid-column: 1 / span 1;
+        }
+
+        .lead {
+            font-size: 1.55rem;
+            line-height: 1.9;
+            color: #4a3b35;
+            text-align: left;
+            margin: 12px 0 28px;
+            padding-right: 12px;
+        }
+
+        /* equation block */
+        .eq-wrap {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin: 28px 0 0;
+        }
+
+        .brace {
+            font-family: serif;
+            font-size: 6.2rem;
+            line-height: 0.88;
+            color: #2f2a24;
+            transform: translateY(6px);
+            user-select: none;
+        }
+
+        .eq {
+            /* gunakan font Bryndan lokal dan kecilkan ukuran persamaan */
+            font-family: 'Bryndan', Georgia, 'Times New Roman', serif;
+            font-size: 1.6rem;
+            /* dikecilkan */
+            color: #222;
+            line-height: 1.25;
+            letter-spacing: 0.01em;
+            white-space: pre;
+        }
+
+        .notes {
+            margin-top: 28px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4f3e39;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- next button -->
+    <button class="next-btn" onclick="location.href='materi4.html'" aria-label="Lanjutkan">
+        <img src="assets/img/next_button.png" alt="Lanjut">
+    </button>
+
+    <main class="stage" role="main" aria-labelledby="judul">
+        <div>
+            <div class="title-pill" id="judul">Pengertian SPLTV</div>
+
+            <div class="lead">
+                SPLTV adalah sistem yang terdiri atas tiga persamaan linear dengan tiga variabel yang sama — misalnya
+                variabel x, y, dan z.
+                Adapun bentuk umum sistem persamaan tiga variabel:
+            </div>
+
+            <div class="eq-wrap" aria-hidden="false">
+                <div class="brace">{</div>
+                <div class="eq" aria-label="Bentuk umum persamaan">
+                    a₁x + b₁y + c₁z = d₁<br />
+                    a₂x + b₂y + c₂z = d₂<br />
+                    a₃x + b₃y + c₃z = d₃
+                </div>
+            </div>
+
+            <div class="notes">
+                Dengan<br />
+                x, y dan z adalah variabelnya;<br />
+                a₁, a₂, a₃, b₁, b₂, b₃, c₁, c₂, c₃ adalah koefisiennya; dan<br />
+                d₁, d₂, d₃ adalah konstanta.
+            </div>
+        </div>
+
+
+
+        <button class="back-btn" onclick="location.href='materi2.html'" aria-label="Kembali">
+            <img src="assets/img/prev_button.png" alt="Kembali">
+        </button>
+</body>
+
+</html>
