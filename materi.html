@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi - Star Girl Academy</title>
+    <style>
+        @font-face {
+            font-family: 'Bryndan';
+            src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #fbf3d7;
+            font-family: 'Bryndan', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #b77972;
+            text-align: center;
+        }
+
+        .header-text {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #6f817c;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            background: #d6ab9d;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            color: white;
+            font-family: 'Bryndan', sans-serif;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        /* cloud at bottom-left, larger and fixed to corner */
+        .cloud-left {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 520px;
+            /* larger size */
+            max-width: 52vw;
+            height: auto;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ensure main content sits above the cloud */
+        .main-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .mascot {
+            position: absolute;
+            right: 10%;
+            bottom: 0;
+            width: 300px;
+            height: auto;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+
+            .mascot {
+                width: 200px;
+                right: 5%;
+            }
+
+            .cloud-left {
+                width: 320px;
+                max-width: 60vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="header-text">Kita akan mulai menjelajahi dunia</div>
+        <h1 class="title">Sistem Persamaan Linear Tiga Variabel</h1>
+        <a href="#" class="button">Let's Gooo</a>
+    </div>
+
+    <img src="assets/img/awan.png" alt="Awan" class="cloud-left">
+    <img src="assets/img/superman.png" alt="Mascot" class="mascot">
+</body>
+
+</html>
