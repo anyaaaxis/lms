@@ -54,7 +54,6 @@
         box-sizing: border-box;
         color: #fff;
         z-index: 5;
-        margin-right: clamp(12px, 2.5vw, 20px); /* geser dari kanan agar lengkung simetris */
       }
       .strip.top .logo {
         height: 65px;
@@ -291,7 +290,6 @@
         .strip.top {
           height: 80px;
           border-radius: 0 0 20px 20px;
-          margin-right: 12px;
         }
         .strip.top .logo {
           height: 50px;
@@ -322,6 +320,149 @@
           width: 200px;
           max-width: 50%;
           left: 30%;
+        }
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 600px) {
+        .strip.top {
+          height: 70px;
+          border-radius: 0 0 0 0;
+          padding: 0 16px;
+          gap: 12px;
+        }
+        .strip.top .logo {
+          height: 40px;
+        }
+        .header-text {
+          font-size: 0.85rem;
+          line-height: 1.3;
+        }
+
+        .container {
+          margin: 16px auto 32px;
+          padding: 0 12px;
+        }
+
+        .panel-wrapper {
+          padding: 10px 0;
+        }
+
+        .panel {
+          min-height: 500px;
+          flex-direction: column;
+        }
+
+        .panel-bg {
+          position: relative;
+          left: 0;
+          top: 0;
+          transform: none;
+          width: 90%;
+          height: auto;
+          min-height: 180px;
+          margin: 0 auto 20px;
+        }
+
+        .layer-front {
+          padding: 20px;
+          justify-content: center;
+        }
+
+        .code-display {
+          flex-direction: row;
+          gap: 12px;
+        }
+
+        .code-text {
+          font-size: 2.5rem;
+          letter-spacing: 0.15em;
+        }
+
+        .copy-btn img {
+          width: 40px;
+        }
+
+        .qrcode-box {
+          position: relative;
+          right: auto;
+          top: auto;
+          transform: none;
+          width: 85%;
+          max-width: 280px;
+          margin: 20px auto;
+          padding: 18px;
+        }
+
+        .wayground-btn {
+          position: relative;
+          bottom: auto;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 70%;
+          max-width: 200px;
+          margin: 20px auto 0;
+          display: block;
+        }
+
+        .wayground-btn:hover {
+          transform: translateX(-50%) scale(1.05);
+        }
+
+        .wayground-btn:active {
+          transform: translateX(-50%) scale(0.98);
+        }
+
+        .back-btn {
+          left: 16px;
+          bottom: 16px;
+        }
+
+        .back-btn img {
+          width: 48px;
+          height: 48px;
+        }
+
+        .toast {
+          top: 90px;
+          font-size: 0.85rem;
+          padding: 10px 20px;
+        }
+      }
+
+      /* Layar sangat kecil (Galaxy S8+) */
+      @media (max-width: 380px) {
+        .header-text {
+          font-size: 0.75rem;
+        }
+
+        .code-text {
+          font-size: 2rem;
+          letter-spacing: 0.12em;
+        }
+
+        .panel-bg {
+          min-height: 150px;
+        }
+
+        .layer-front {
+          padding: 15px;
+        }
+
+        .qrcode-box {
+          width: 80%;
+          padding: 15px;
+        }
+      }
+
+      /* Layar sedang (iPhone 12 Pro, Galaxy S20 Ultra) */
+      @media (min-width: 381px) and (max-width: 420px) {
+        .code-text {
+          font-size: 2.3rem;
+        }
+
+        .panel-bg {
+          min-height: 165px;
         }
       }
     </style>
