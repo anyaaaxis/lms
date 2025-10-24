@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Bentuk Umum SPLTV - Materi</title>
+    <style>
+        @font-face {
+            font-family: 'Bryndan';
+            src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Moresugar';
+            src: url('assets/fonts/moresugar_regular.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        :root {
+            --bg: #fbf3d7;
+            --accent: #d6ab9d;
+            --ink: #6b4b4b;
+            --muted: #6f817c;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Bryndan', system-ui, Arial;
+            background: var(--bg);
+            color: var(--ink);
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 56px auto;
+            padding: 0 28px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Top pill title */
+        .pill {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 18px 34px;
+            border-radius: 48px;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+            font-family: 'Bryndan';
+            margin-bottom: 28px;
+        }
+
+        /* two-column layout */
+        .page-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .lead-text {
+            font-family: 'Moresugar', 'Bryndan', sans-serif;
+            font-size: 1.6rem;
+            line-height: 1.9;
+            color: #6f4b4b;
+            text-align: left;
+            padding-right: 12px;
+        }
+
+        /* hijab girl illustration on right */
+        .illustration-wrap {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            /* geser wrap ke kanan sedikit */
+            padding-left: 18px;
+        }
+
+        .girl {
+            width: 480px;
+            /* diperbesar */
+            max-width: 90%;
+            height: auto;
+            display: block;
+            transform: translateX(12px);
+            /* geser sedikit ke kanan */
+        }
+
+        /* top-right circular next button (only top control now) */
+        .next-btn {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 40;
+        }
+
+        .next-btn img {
+            width: 56px;
+            height: 56px;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+        }
+
+        /* back button bottom-left */
+        .back-btn {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        .back-btn img {
+            width: 56px;
+            height: 56px;
+        }
+
+        @media (max-width:980px) {
+            .page-grid {
+                grid-template-columns: 1fr 320px;
+                gap: 18px;
+            }
+
+            .girl {
+                width: 360px;
+            }
+
+            .container {
+                margin: 42px auto;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width:720px) {
+            .page-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .illustration-wrap {
+                order: -1;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 18px;
+                padding-left: 0;
+            }
+
+            .girl {
+                width: 320px;
+                /* ukuran mobile yang lebih sesuai */
+                transform: translateX(0);
+                /* hilangkan offset kecil di mobile */
+            }
+
+            .pill {
+                font-size: 1.25rem;
+                padding: 12px 22px;
+            }
+
+            .lead-text {
+                font-size: 1.25rem;
+            }
+
+            .next-btn {
+                right: 12px;
+                top: 12px;
+            }
+
+            .container {
+                margin: 28px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- top-only next button (styled like prev button) -->
+    <button class="next-btn" onclick="location.href='materi_next.html'" title="Lanjutkan" aria-label="Lanjutkan">
+        <img src="assets/img/next_button.png" alt="Next">
+    </button>
+
+    <main class="container">
+        <div class="pill">Bentuk Umum SPLTV</div>
+
+        <section class="page-grid" aria-label="Konten materi">
+            <div>
+                <p class="lead-text">
+                    Masih ingatkah kalian tentang materi sistem persamaan linear dua variabel (SPLDV)?
+                    Pada jenjang SMP, kalian telah mempelajarinya dan mengetahui bagaimana cara menyelesaikan SPLDV.
+                    Di jenjang SMK/SMA ini kita akan mempelajari tentang sistem persamaan linear tiga variabel (SPLTV).
+                </p>
+
+                <!-- tambah konten / poin nantinya di sini -->
+            </div>
+
+            <aside class="illustration-wrap" aria-hidden="true">
+                <img src="assets/img/bingung.png" alt="Ilustrasi anak bingung" class="girl">
+            </aside>
+        </section>
+    </main>
+
+    <button class="back-btn" onclick="location.href='materi.html'" aria-label="Kembali">
+        <img src="assets/img/prev_button.png" alt="Kembali">
+    </button>
+</body>
+
+</html>

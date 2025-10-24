@@ -551,7 +551,7 @@
       </button>
 
       <!-- Lesson two clickable button on the top hump of the snake -->
-      <button id="lessonTwoBtn" class="lesson-two" aria-label="Buka Materi" title="Materi" data-target="index.html">
+      <button id="lessonTwoBtn" class="lesson-two" aria-label="Buka Materi" title="Materi" data-target="materi.html">
         <img src="assets/img/dua_button.png" alt="" />
       </button>
 
@@ -590,88 +590,87 @@
       </button>
       <div class="testi-header">
         <h2>Apa Kata Mereka?</h2>
-        <p>Pengalaman Bestie yang sudah belajar memahami konsep di Star Girl Academy</p>
-      </div>
-      <div class="testi-list">
-        <div class="testi-card">
-          <div class="testi-icon">
-            <span class="dot"></span>
-            <span class="stars">★★★★★</span>
+        <p>Pengalaman Bestie yang sudah belajar
+        <div class="testi-list">
+          <div class="testi-card">
+            <div class="testi-icon">
+              <span class="dot"></span>
+              <span class="stars">★★★★★</span>
+            </div>
+            <div class="testi-text">Kursusnya Sangat Asyik dan Menyenangkan !</div>
           </div>
-          <div class="testi-text">Kursusnya Sangat Asyik dan Menyenangkan !</div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-icon">
-            <span class="dot"></span>
-            <span class="stars">★★★★★</span>
+          <div class="testi-card">
+            <div class="testi-icon">
+              <span class="dot"></span>
+              <span class="stars">★★★★★</span>
+            </div>
+            <div class="testi-text">Worth it banget buat belajar, materinya mudah dipahami</div>
           </div>
-          <div class="testi-text">Worth it banget buat belajar, materinya mudah dipahami</div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-icon">
-            <span class="dot"></span>
-            <span class="stars">★★★★★</span>
+          <div class="testi-card">
+            <div class="testi-icon">
+              <span class="dot"></span>
+              <span class="stars">★★★★★</span>
+            </div>
+            <div class="testi-text">Enak banget belajar di Stargirl Academy</div>
           </div>
-          <div class="testi-text">Enak banget belajar di Stargirl Academy</div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-icon">
-            <span class="dot"></span>
-            <span class="stars">★★★★★</span>
+          <div class="testi-card">
+            <div class="testi-icon">
+              <span class="dot"></span>
+              <span class="stars">★★★★★</span>
+            </div>
+            <div class="testi-text">Aku Lolos SNBT 2025 karena belajar di Stargirl Academy</div>
           </div>
-          <div class="testi-text">Aku Lolos SNBT 2025 karena belajar di Stargirl Academy</div>
         </div>
       </div>
     </div>
-  </div>
-  <script>
-    // Load user name from localStorage
-    const userName = localStorage.getItem('userName');
-    if (userName) {
-      document.getElementById('userName').textContent = userName;
-    }
+    <script>
+      // Load user name from localStorage
+      const userName = localStorage.getItem('userName');
+      if (userName) {
+        document.getElementById('userName').textContent = userName;
+      }
 
-    const btn = document.getElementById('showTestiBtn');
-    const stripBottom = document.querySelector('.strip.bottom');
-    btn.addEventListener('click', function () {
-      stripBottom.classList.remove('hide');
-      stripBottom.classList.add('show');
-      btn.style.display = 'none';
-    });
-    const closeBtn = document.getElementById('closeTestiBtn');
-    closeBtn.addEventListener('click', function () {
-      stripBottom.classList.remove('show');
-      stripBottom.classList.add('hide');
-      btn.style.display = 'block';
-    });
-
-    // Navigate when clicking the lesson one button
-    const lessonOneBtn = document.getElementById('lessonOneBtn');
-    if (lessonOneBtn) {
-      lessonOneBtn.addEventListener('click', function () {
-        const target = lessonOneBtn.dataset.target || 'index.html';
-        window.location.href = target;
+      const btn = document.getElementById('showTestiBtn');
+      const stripBottom = document.querySelector('.strip.bottom');
+      btn.addEventListener('click', function () {
+        stripBottom.classList.remove('hide');
+        stripBottom.classList.add('show');
+        btn.style.display = 'none';
       });
-    }
-
-    // Navigate when clicking the lesson two button
-    const lessonTwoBtn = document.getElementById('lessonTwoBtn');
-    if (lessonTwoBtn) {
-      lessonTwoBtn.addEventListener('click', function () {
-        const target = lessonTwoBtn.dataset.target || 'index.html';
-        window.location.href = target;
+      const closeBtn = document.getElementById('closeTestiBtn');
+      closeBtn.addEventListener('click', function () {
+        stripBottom.classList.remove('show');
+        stripBottom.classList.add('hide');
+        btn.style.display = 'block';
       });
-    }
 
-    // Navigate when clicking the lesson three button
-    const lessonThreeBtn = document.getElementById('lessonThreeBtn');
-    if (lessonThreeBtn) {
-      lessonThreeBtn.addEventListener('click', function () {
-        const target = lessonThreeBtn.dataset.target || 'index.html';
-        window.location.href = target;
-      });
-    }
-  </script>
+      // Navigate when clicking the lesson one button
+      const lessonOneBtn = document.getElementById('lessonOneBtn');
+      if (lessonOneBtn) {
+        lessonOneBtn.addEventListener('click', function () {
+          const target = lessonOneBtn.dataset.target || 'index.html';
+          window.location.href = target;
+        });
+      }
+
+      // Navigate when clicking the lesson two button
+      const lessonTwoBtn = document.getElementById('lessonTwoBtn');
+      if (lessonTwoBtn) {
+        lessonTwoBtn.addEventListener('click', function () {
+          const target = lessonTwoBtn.dataset.target || 'index.html';
+          window.location.href = target;
+        });
+      }
+
+      // Navigate when clicking the lesson three button
+      const lessonThreeBtn = document.getElementById('lessonThreeBtn');
+      if (lessonThreeBtn) {
+        lessonThreeBtn.addEventListener('click', function () {
+          const target = lessonThreeBtn.dataset.target || 'index.html';
+          window.location.href = target;
+        });
+      }
+    </script>
 </body>
 
 </html>
