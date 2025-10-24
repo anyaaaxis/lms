@@ -1,186 +1,293 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1"
+    />
     <title>Pengertian SPLTV - Materi</title>
+    <!-- KaTeX CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+    />
     <style>
-        @font-face {
-            font-family: 'Moresugar';
-            src: url('assets/fonts/moresugar_regular.ttf') format('truetype');
-            font-display: swap;
-        }
+      @font-face {
+        font-family: 'Moresugar';
+        src: url('assets/fonts/moresugar_regular.ttf') format('truetype');
+        font-display: swap;
+      }
 
-        @font-face {
-            font-family: 'Bryndan';
-            src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
-            font-display: swap;
-        }
+      @font-face {
+        font-family: 'Bryndan';
+        src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+        font-display: swap;
+      }
 
-        :root {
-            --bg: #fbf3d7;
-            --ink: #3f3a2d;
-            --accent: #d6ab9d;
-        }
+      :root {
+        --bg: #fbf3d7;
+        --ink: #3f3a2d;
+        --accent: #d6ab9d;
+      }
 
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            background: var(--bg);
-            font-family: 'Moresugar', 'Bryndan', system-ui, Arial, sans-serif;
-            color: var(--ink);
-        }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: var(--bg);
+        font-family: 'Moresugar', 'Bryndan', system-ui, Arial, sans-serif;
+        color: var(--ink);
+        overflow: hidden;
+      }
 
-        /* top-right next button (icon 56x56 like prev) */
-        .next-btn {
-            position: fixed;
-            top: 18px;
-            right: 18px;
-            z-index: 50;
-            background: transparent;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-        }
+      body {
+        overflow-y: auto;
+      }
 
-        .next-btn img {
-            width: 56px;
-            height: 56px;
-            display: block;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
-        }
+      /* top-right next button (icon 56x56 like prev) */
+      .next-btn {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 50;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
 
-        /* back bottom-left */
-        .back-btn {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            background: transparent;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            z-index: 40;
-        }
+      .next-btn img {
+        width: 56px;
+        height: 56px;
+        display: block;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+      }
 
-        .back-btn img {
-            width: 56px;
-            height: 56px;
-            display: block;
-        }
+      /* back bottom-left */
+      .back-btn {
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        z-index: 40;
+      }
 
+      .back-btn img {
+        width: 56px;
+        height: 56px;
+        display: block;
+      }
+
+      .stage {
+        max-width: 1180px;
+        margin: 72px auto;
+        padding: 0 28px;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 28px;
+        align-items: stretch;
+        max-height: calc(100vh - 144px);
+        overflow-y: auto;
+      }
+
+      .title-pill {
+        display: inline-block;
+        background: var(--accent);
+        color: #fff;
+        padding: 14px 28px;
+        border-radius: 40px;
+        font-size: 1.4rem;
+        font-family: 'Bryndan';
+        margin-bottom: 20px;
+      }
+
+      .copy-block {
+        grid-column: 1 / span 1;
+      }
+
+      .lead {
+        font-size: 1.1rem;
+        line-height: 1.9;
+        color: #4a3b35;
+        text-align: left;
+        margin: 12px 0 28px;
+        padding-right: 12px;
+      }
+
+      /* equation block */
+      .eq-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 28px 0 0;
+      }
+
+      .eq {
+        font-size: 1.6rem;
+      }
+
+      .katex-display {
+        margin: 0;
+      }
+
+      .katex {
+        font-size: 1.1rem;
+        text-align: left;
+      }
+
+      /* Override KaTeX font dengan Bryndan */
+      .katex .mathnormal,
+      .katex .mathit,
+      .katex .mathrm,
+      .katex .text {
+        font-family: 'Bryndan', 'KaTeX_Math', serif !important;
+        font-style: italic;
+      }
+
+      .katex .mord {
+        font-family: 'Bryndan', 'KaTeX_Math', serif !important;
+      }
+
+      .notes {
+        margin-top: 28px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #4f3e39;
+        text-align: left;
+      }
+
+      /* illustration on right side */
+      .illustration-wrap {
+        grid-column: 2 / span 1;
+        grid-row: 1;
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
+
+      .illustration {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        display: block;
+        margin-top: auto;
+      }
+
+      @media (max-width: 768px) {
         .stage {
-            max-width: 1180px;
-            margin: 72px auto;
-            padding: 0 28px;
-            box-sizing: border-box;
-            display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 28px;
-            align-items: start;
+          grid-template-columns: 1fr;
+          padding: 2rem;
+          margin: 56px auto;
         }
 
-        .title-pill {
-            display: inline-block;
-            background: var(--accent);
-            color: #fff;
-            padding: 14px 28px;
-            border-radius: 40px;
-            font-size: 1.4rem;
-            font-family: 'Bryndan';
-            margin-bottom: 20px;
+        .illustration-wrap {
+          grid-column: 1;
+          justify-content: center;
+          padding-bottom: 0;
+          margin-top: 20px;
         }
 
-        .copy-block {
-            grid-column: 1 / span 1;
+        .illustration {
+          max-width: 320px;
         }
-
-        .lead {
-            font-size: 1.55rem;
-            line-height: 1.9;
-            color: #4a3b35;
-            text-align: left;
-            margin: 12px 0 28px;
-            padding-right: 12px;
-        }
-
-        /* equation block */
-        .eq-wrap {
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
-            margin: 28px 0 0;
-        }
-
-        .brace {
-            font-family: serif;
-            font-size: 6.2rem;
-            line-height: 0.88;
-            color: #2f2a24;
-            transform: translateY(6px);
-            user-select: none;
-        }
-
-        .eq {
-            /* gunakan font Bryndan lokal dan kecilkan ukuran persamaan */
-            font-family: 'Bryndan', Georgia, 'Times New Roman', serif;
-            font-size: 1.6rem;
-            /* dikecilkan */
-            color: #222;
-            line-height: 1.25;
-            letter-spacing: 0.01em;
-            white-space: pre;
-        }
-
-        .notes {
-            margin-top: 28px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #4f3e39;
-            text-align: left;
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- next button -->
-    <button class="next-btn" onclick="location.href='materi4.html'" aria-label="Lanjutkan">
-        <img src="assets/img/next_button.png" alt="Lanjut">
+    <button
+      class="next-btn"
+      onclick="location.href='materi4.html'"
+      aria-label="Lanjutkan"
+    >
+      <img
+        src="assets/img/next_button.png"
+        alt="Lanjut"
+      />
     </button>
 
-    <main class="stage" role="main" aria-labelledby="judul">
-        <div>
-            <div class="title-pill" id="judul">Pengertian SPLTV</div>
-
-            <div class="lead">
-                SPLTV adalah sistem yang terdiri atas tiga persamaan linear dengan tiga variabel yang sama — misalnya
-                variabel x, y, dan z.
-                Adapun bentuk umum sistem persamaan tiga variabel:
-            </div>
-
-            <div class="eq-wrap" aria-hidden="false">
-                <div class="brace">{</div>
-                <div class="eq" aria-label="Bentuk umum persamaan">
-                    a₁x + b₁y + c₁z = d₁<br />
-                    a₂x + b₂y + c₂z = d₂<br />
-                    a₃x + b₃y + c₃z = d₃
-                </div>
-            </div>
-
-            <div class="notes">
-                Dengan<br />
-                x, y dan z adalah variabelnya;<br />
-                a₁, a₂, a₃, b₁, b₂, b₃, c₁, c₂, c₃ adalah koefisiennya; dan<br />
-                d₁, d₂, d₃ adalah konstanta.
-            </div>
+    <main
+      class="stage"
+      role="main"
+      aria-labelledby="judul"
+    >
+      <div>
+        <div
+          class="title-pill"
+          id="judul"
+        >
+          Pengertian SPLTV
         </div>
 
+        <div class="lead">
+          SPLTV adalah sistem yang terdiri atas tiga persamaan linear dengan tiga variabel yang sama — misalnya variabel x, y, dan z. Adapun bentuk
+          umum sistem persamaan tiga variabel:
+        </div>
 
+        <div
+          class="eq-wrap"
+          aria-hidden="false"
+        >
+          <div
+            class="eq"
+            id="equation-system"
+            aria-label="Bentuk umum persamaan"
+          ></div>
+        </div>
 
-        <button class="back-btn" onclick="location.href='materi2.html'" aria-label="Kembali">
-            <img src="assets/img/prev_button.png" alt="Kembali">
-        </button>
-</body>
+        <div class="notes">
+          Dengan<br />
+          x, y dan z adalah variabelnya;<br />
+          a₁, a₂, a₃, b₁, b₂, b₃, c₁, c₂, c₃ adalah koefisiennya; dan<br />
+          d₁, d₂, d₃ adalah konstanta.
+        </div>
+      </div>
 
+      <aside
+        class="illustration-wrap"
+        aria-hidden="true"
+      >
+        <img
+          src="assets/img/ide.png"
+          alt="Ilustrasi anak dengan ide"
+          class="illustration"
+        />
+      </aside>
+    </main>
+
+    <button
+      class="back-btn"
+      onclick="location.href='materi2.html'"
+      aria-label="Kembali"
+    >
+      <img
+        src="assets/img/prev_button.png"
+        alt="Kembali"
+      />
+    </button>
+
+    <!-- KaTeX JS -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script>
+      // Render sistem persamaan dengan kurung kurawal sebagai satu kesatuan
+      const equationSystem = `\\begin{cases}
+        a_1x + b_1y + c_1z = d_1 \\\\
+        a_2x + b_2y + c_2z = d_2 \\\\
+        a_3x + b_3y + c_3z = d_3
+      \\end{cases}`;
+
+      katex.render(equationSystem, document.getElementById('equation-system'), {
+        displayMode: true,
+        throwOnError: false,
+      });
+    </script>
+  </body>
 </html>
