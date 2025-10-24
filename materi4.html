@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Metode Penyelesaian SPLTV - Star Girl Academy</title>
+    <style>
+      @font-face {
+        font-family: 'Bryndan';
+        src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Bryndan', sans-serif;
+        background: #fbf3d7;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .container {
+        background: transparent;
+        padding: 3rem;
+        max-width: 800px;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        color: #2d3a36;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 600;
+      }
+
+      .content {
+        color: #2d3a36;
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+
+      .methods-list {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 1.5rem;
+      }
+
+      .methods-list li {
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+        color: #2d3a36;
+      }
+
+      /* Next button at top-right */
+      .next-btn {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        z-index: 40;
+        transition: transform 0.3s ease;
+      }
+
+      .next-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .next-btn:active {
+        transform: scale(0.95);
+      }
+
+      .next-btn img {
+        width: 56px;
+        height: 56px;
+        display: block;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+        transition: filter 0.3s ease;
+      }
+
+      .next-btn:hover img {
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+      }
+
+      /* Back button at bottom-left */
+      .back-btn {
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 20;
+        transition: transform 0.3s ease;
+      }
+
+      .back-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .back-btn:active {
+        transform: scale(0.95);
+      }
+
+      .back-btn img {
+        width: 56px;
+        height: 56px;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
+        transition: filter 0.3s ease;
+      }
+
+      .back-btn:hover img {
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 2rem;
+        }
+
+        h1 {
+          font-size: 1.6rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .content {
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+
+        .methods-list li {
+          font-size: 1rem;
+        }
+
+        .next-btn {
+          right: 12px;
+          top: 12px;
+        }
+
+        .next-btn img,
+        .back-btn img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Next button at top-right -->
+    <button
+      class="next-btn"
+      onclick="window.location.href='materi5.html'"
+      title="Lanjutkan"
+      aria-label="Lanjutkan"
+    >
+      <img
+        src="assets/img/next_button.png"
+        alt="Next"
+      />
+    </button>
+
+    <div class="container">
+      <h1>Metode Penyelesaian SPLTV</h1>
+      <div class="content">
+        <p>
+          Terdapat beberapa metode untuk menentukan penyelesaian SPLTV. Pada kegiatan kali ini ada tiga metode yang dapat dipelajari, ialah sebagai
+          berikut.
+        </p>
+        <ul class="methods-list">
+          <li>1) Metode Substitusi</li>
+          <li>2) Metode Eliminasi</li>
+          <li>3) Metode Substitusi dan Eliminasi (Campuran)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Back button at bottom-left -->
+    <button
+      class="back-btn"
+      onclick="window.location.href='materi3.html'"
+      aria-label="Kembali"
+    >
+      <img
+        src="assets/img/prev_button.png"
+        alt="Kembali"
+      />
+    </button>
+  </body>
+</html>
