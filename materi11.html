@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Metode Substitusi dan Eliminasi - Materi</title>
+    <style>
+        @font-face {
+            font-family: 'Bryndan';
+            src: url('assets/fonts/bryndan_writebook.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background: #fbf3d7;
+            color: #6b3b3b;
+            font-family: 'Bryndan', system-ui, Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 48px auto;
+            padding: 0 28px;
+            box-sizing: border-box;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin: 24px 0;
+        }
+
+        /* Navigation buttons */
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 420px;
+            margin: 48px auto 0;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.08);
+        }
+
+        .nav-btn img {
+            width: 56px;
+            height: 56px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 32px auto;
+                padding: 0 20px;
+            }
+
+            .step-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content-wrapper">
+            <p class="step-text">
+                Langkah 2:<br>
+                Samakan koefisien x pada persamaan pertama dan persamaan ketiga, dengan cara mengalikan persamaan dengan
+                sebuah sehingga tetap ekivalen. Kurangkan persamaan dengan persamaan ketiga sehingga diperoleh persamaan
+                linear dua variabel baru yang ke dua.
+            </p>
+
+            <p class="step-text">
+                Langkah 3:<br>
+                Selesaikan sistem persamaan linear dua variabel yang baru sehingga diperoleh nilai y dan z.
+                Substitusikan nilai y dan x ke salah satu persamaan tiga variabel untuk memperoleh nilai x.
+            </p>
+        </div>
+
+        <div class="nav-row">
+            <button class="nav-btn" onclick="window.location.href='materi10.html'" aria-label="Sebelumnya">
+                <img src="assets/img/prev_button.png" alt="Sebelumnya">
+            </button>
+            <button class="nav-btn" onclick="window.location.href='materi12.html'" aria-label="Selanjutnya">
+                <img src="assets/img/next_button.png" alt="Selanjutnya">
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
