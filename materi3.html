@@ -216,6 +216,43 @@
       }
 
       @media (max-width: 768px) {
+        body {
+          overflow-y: auto;
+          height: auto;
+        }
+
+        .stage {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          margin: 40px auto;
+          padding: 0 20px 140px;
+          max-height: none;
+          overflow-y: visible;
+        }
+
+        .title-pill {
+          font-size: 1.2rem;
+          padding: 12px 24px;
+        }
+
+        .lead {
+          font-size: 1rem;
+        }
+
+        .illustration-wrap {
+          order: 2;
+          margin-top: 20px;
+        }
+
+        .illustration {
+          max-width: 280px;
+        }
+
+        .next-btn img {
+          width: 48px;
+          height: 48px;
+        }
+
         .stage {
           grid-template-columns: 1fr;
           padding: 2rem;

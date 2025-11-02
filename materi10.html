@@ -96,9 +96,13 @@
       }
 
       @media (max-width: 768px) {
+        body {
+          overflow-y: auto;
+        }
+
         .container {
           margin: 32px auto;
-          padding: 0 20px;
+          padding: 0 20px 140px;
         }
 
         .title-pill {
@@ -109,6 +113,7 @@
         .lead-text,
         .step-text {
           font-size: 1.2rem;
+          margin-bottom: 20px;
         }
       }
     </style>
