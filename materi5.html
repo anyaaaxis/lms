@@ -29,7 +29,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 2rem;
+        padding: 2rem 2rem 120px;
         position: relative;
         overflow: hidden;
       }
@@ -107,16 +107,33 @@
         filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
       }
 
-      /* Back button at bottom-left */
-      .back-btn {
+      /* Navigation row at bottom */
+      .nav-row {
         position: fixed;
-        left: 20px;
-        bottom: 20px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 20px 0;
+        background: rgba(251, 243, 215, 0.8);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        z-index: 20;
+      }
+
+      .nav-row-inner {
+        display: flex;
+        justify-content: space-between;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .back-btn {
         background: transparent;
         border: none;
         cursor: pointer;
-        z-index: 20;
         transition: transform 0.3s ease;
+        padding: 0;
       }
 
       .back-btn:hover {
@@ -127,15 +144,33 @@
         transform: scale(0.95);
       }
 
-      .back-btn img {
+      .back-btn img,
+      .next-btn-bottom img {
         width: 56px;
         height: 56px;
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
         transition: filter 0.3s ease;
       }
 
-      .back-btn:hover img {
+      .back-btn:hover img,
+      .next-btn-bottom:hover img {
         filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+      }
+
+      .next-btn-bottom {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        padding: 0;
+      }
+
+      .next-btn-bottom:hover {
+        transform: scale(1.1);
+      }
+
+      .next-btn-bottom:active {
+        transform: scale(0.95);
       }
 
       @media (max-width: 768px) {
@@ -167,19 +202,6 @@
     </style>
   </head>
   <body>
-    <!-- Next button at top-right -->
-    <button
-      class="next-btn"
-      onclick="window.location.href='materi6.html'"
-      title="Lanjutkan"
-      aria-label="Lanjutkan"
-    >
-      <img
-        src="assets/img/next_button.png"
-        alt="Next"
-      />
-    </button>
-
     <div class="container">
       <h1>Metode Penyelesaian SPLTV</h1>
       <div class="content">
@@ -198,16 +220,30 @@
       </div>
     </div>
 
-    <!-- Back button at bottom-left -->
-    <button
-      class="back-btn"
-      onclick="window.location.href='materi4.html'"
-      aria-label="Kembali"
-    >
-      <img
-        src="assets/img/prev_button.png"
-        alt="Kembali"
-      />
-    </button>
+    <!-- Navigation row at bottom -->
+    <div class="nav-row">
+      <div class="nav-row-inner">
+        <button
+          class="back-btn"
+          onclick="window.location.href='materi4.html'"
+          aria-label="Kembali"
+        >
+          <img
+            src="assets/img/prev_button.png"
+            alt="Kembali"
+          />
+        </button>
+        <button
+          class="next-btn-bottom"
+          onclick="window.location.href='materi6.html'"
+          aria-label="Selanjutnya"
+        >
+          <img
+            src="assets/img/next_button.png"
+            alt="Selanjutnya"
+          />
+        </button>
+      </div>
+    </div>
   </body>
 </html>

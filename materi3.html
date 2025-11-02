@@ -39,6 +39,7 @@
         font-family: 'Moresugar', 'Bryndan', system-ui, Arial, sans-serif;
         color: var(--ink);
         overflow: hidden;
+        padding-bottom: 100px;
       }
 
       body {
@@ -64,22 +65,56 @@
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
       }
 
-      /* back bottom-left */
-      .back-btn {
+      /* Navigation row at bottom */
+      .nav-row {
         position: fixed;
-        left: 20px;
-        bottom: 20px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 20px 0;
+        background: rgba(251, 243, 215, 0.8);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        z-index: 40;
+      }
+
+      .nav-row-inner {
+        display: flex;
+        justify-content: space-between;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .back-btn {
         background: transparent;
         border: none;
         padding: 0;
         cursor: pointer;
-        z-index: 40;
+        transition: transform 0.2s;
       }
 
-      .back-btn img {
+      .back-btn:hover {
+        transform: scale(1.08);
+      }
+
+      .back-btn img,
+      .next-btn-bottom img {
         width: 56px;
         height: 56px;
         display: block;
+      }
+
+      .next-btn-bottom {
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .next-btn-bottom:hover {
+        transform: scale(1.08);
       }
 
       .stage {
@@ -202,18 +237,6 @@
   </head>
 
   <body>
-    <!-- next button -->
-    <button
-      class="next-btn"
-      onclick="location.href='materi4.html'"
-      aria-label="Lanjutkan"
-    >
-      <img
-        src="assets/img/next_button.png"
-        alt="Lanjut"
-      />
-    </button>
-
     <main
       class="stage"
       role="main"
@@ -263,16 +286,31 @@
       </aside>
     </main>
 
-    <button
-      class="back-btn"
-      onclick="location.href='materi2.html'"
-      aria-label="Kembali"
-    >
-      <img
-        src="assets/img/prev_button.png"
-        alt="Kembali"
-      />
-    </button>
+    <!-- Navigation row at bottom -->
+    <div class="nav-row">
+      <div class="nav-row-inner">
+        <button
+          class="back-btn"
+          onclick="location.href='materi2.html'"
+          aria-label="Kembali"
+        >
+          <img
+            src="assets/img/prev_button.png"
+            alt="Kembali"
+          />
+        </button>
+        <button
+          class="next-btn-bottom"
+          onclick="location.href='materi4.html'"
+          aria-label="Selanjutnya"
+        >
+          <img
+            src="assets/img/next_button.png"
+            alt="Selanjutnya"
+          />
+        </button>
+      </div>
+    </div>
 
     <!-- KaTeX JS -->
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>

@@ -14,7 +14,7 @@
 
         html,
         body {
-            height: 100%;
+            min-height: 100vh;
             margin: 0;
             background: #fbf3d7;
             color: #6b3b3b;
@@ -24,7 +24,7 @@
         .container {
             max-width: 1100px;
             margin: 48px auto;
-            padding: 0 28px;
+            padding: 0 28px 100px;
             box-sizing: border-box;
         }
 
@@ -57,11 +57,22 @@
 
         /* Navigation buttons */
         .nav-row {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(251, 243, 215, 0.8);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-row-inner {
             display: flex;
             justify-content: space-between;
-            width: 100%;
             max-width: 420px;
-            margin: 48px auto 0;
+            margin: 0 auto;
         }
 
         .nav-btn {
@@ -131,12 +142,14 @@
         </div>
 
         <div class="nav-row">
-            <button class="nav-btn" onclick="window.location.href='materi7.html'" aria-label="Sebelumnya">
-                <img src="assets/img/prev_button.png" alt="Sebelumnya">
-            </button>
-            <button class="nav-btn" onclick="window.location.href='materi9.html'" aria-label="Selanjutnya">
-                <img src="assets/img/next_button.png" alt="Selanjutnya">
-            </button>
+            <div class="nav-row-inner">
+                <button class="nav-btn" onclick="window.location.href='materi7.html'" aria-label="Sebelumnya">
+                    <img src="assets/img/prev_button.png" alt="Sebelumnya">
+                </button>
+                <button class="nav-btn" onclick="window.location.href='materi9.html'" aria-label="Selanjutnya">
+                    <img src="assets/img/next_button.png" alt="Selanjutnya">
+                </button>
+            </div>
         </div>
     </div>
 </body>
