@@ -38,7 +38,7 @@
         background: var(--bg);
         font-family: 'Moresugar', 'Bryndan', system-ui, Arial, sans-serif;
         color: var(--ink);
-        overflow: hidden;
+        overflow-y: auto;
         padding-bottom: 100px;
       }
 
@@ -120,14 +120,12 @@
       .stage {
         max-width: 1180px;
         margin: 72px auto;
-        padding: 0 28px;
+        padding: 0 28px 120px;
         box-sizing: border-box;
         display: grid;
         grid-template-columns: 1fr 420px;
         gap: 28px;
         align-items: stretch;
-        max-height: calc(100vh - 144px);
-        overflow-y: auto;
       }
 
       .title-pill {
